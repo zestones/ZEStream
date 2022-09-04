@@ -9,11 +9,11 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JButton;
 
-import home.IFrame;
+import home.IGlobal;
 import utils.shape.Position;
 import utils.shape.Rectangle;
 
-public class MenuButton extends JButton implements IFrame {
+public class MenuButton extends JButton implements IGlobal, IMenu {
 		
 	private static final long serialVersionUID = 1L;
 	

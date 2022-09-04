@@ -13,12 +13,12 @@ import javax.swing.border.MatteBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import home.Home;
-import home.IFrame;
+import home.IGlobal;
 import utils.UI.Button;
 import utils.UI.Title;
 import utils.shape.Position;
 
-public class Setting implements IFrame {
+public class Setting implements IGlobal, ISetting {
 	
     private ArrayList<Button> deleteButtonArray;
     private ArrayList<JPanel> cardButtonArray;

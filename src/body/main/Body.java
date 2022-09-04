@@ -14,12 +14,11 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import body.bibliotheque.Bibliotheque;
 import filter.FileSearch;
-import home.IFrame;
 import utils.UI.Button;
 import utils.UI.Title;
 import utils.shape.Position;
 
-public class Body implements IFrame {
+public class Body implements IBody {
 	
     private ArrayList<Button> cardButtonArray;
     private ArrayList<Button> txtButtonArray;

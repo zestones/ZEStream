@@ -15,15 +15,16 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import body.bibliotheque.Bibliotheque;
 import body.main.Body;
+import body.main.IBody;
 import filter.FileSearch;
-import home.IFrame;
+import home.IGlobal;
 import utils.UI.Button;
 import utils.UI.Title;
 import utils.shape.Position;
 
-public class Episode implements IFrame {
+public class Episode implements IGlobal {
+	
     private ArrayList<Button> episodeButtonArray;
-    
     public static String currentFolderPath;
     
     private int index;
@@ -56,7 +57,7 @@ public class Episode implements IFrame {
 		sp.getVerticalScrollBar().setValue(0);
 		
 	    container.setLayout(null);
-	    container.add(backButton);
+	    container.add(IBody.backButton);
 	    
 	    JPanel infos = new JPanel();
 		

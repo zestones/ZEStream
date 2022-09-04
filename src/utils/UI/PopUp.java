@@ -7,9 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import home.IFrame;
+import home.IGlobal;
 
-public class PopUp extends JOptionPane implements IFrame {
+public class PopUp extends JOptionPane implements IGlobal {
 	private static final long serialVersionUID = 1L;
 	
 	private int answer;

@@ -17,11 +17,11 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
-import home.IFrame;
+import home.IGlobal;
 import utils.shape.Position;  
 
 
-public class Button extends JButton implements MouseMotionListener, IFrame {
+public class Button extends JButton implements MouseMotionListener, IGlobal {
 	private static final long serialVersionUID = 1L;
 	
 	private final static String defaultImgPath = "./.res/img-not-found.jpg";

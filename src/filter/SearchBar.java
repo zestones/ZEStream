@@ -5,9 +5,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
 
-import home.IFrame;
-
-public class SearchBar extends JTextField implements IFrame, KeyListener {
+public class SearchBar extends JTextField implements KeyListener {
 	private static final long serialVersionUID = 1L;
 	
 	private String defaultTxt;

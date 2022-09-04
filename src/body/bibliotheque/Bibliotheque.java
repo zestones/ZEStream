@@ -32,7 +32,7 @@ public abstract class Bibliotheque {
 		getBiblioCoverFolders();
 
 		if(pathAlreadySaved(new File(parent).getName())) {
-			PopUp confirm = new PopUp("Etes-vous sûres de vouloir mettre à jour cette série ?", "Selectioner une option", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+			PopUp confirm = new PopUp("Etes-vous sûres de vouloir mettre à jour cette série ?", "Selectioner une option", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 			if(confirm.getAnswer() == JOptionPane.YES_OPTION) {
 				updateBibliotheque(parent);
 				saveFolderPath(parent, ep, path);

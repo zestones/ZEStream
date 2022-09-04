@@ -9,10 +9,10 @@ import java.awt.event.MouseEvent;
 import body.bibliotheque.Bibliotheque;
 import body.main.Body;
 import home.Home;
-import home.IFrame;
+import home.IGlobal;
 import settings.Setting;
 
-public class MenuEvent implements IFrame {
+public class MenuEvent implements IGlobal, IMenu {
 	
 	
 	public MenuEvent() {

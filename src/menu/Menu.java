@@ -3,9 +3,9 @@ package menu;
 import java.awt.BorderLayout;
 
 import filter.SearchBar;
-import home.IFrame;
+import home.IGlobal;
 
-public class Menu implements IFrame {
+public class Menu implements IGlobal, IMenu {
 
 	public Menu() {
 				

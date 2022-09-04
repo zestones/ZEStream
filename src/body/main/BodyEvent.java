@@ -9,10 +9,9 @@ import body.bibliotheque.Bibliotheque;
 import body.episode.Episode;
 import filter.FileSearch;
 import home.Home;
-import home.IFrame;
 import utils.UI.Button;
 
-public class BodyEvent implements IFrame {
+public class BodyEvent implements IBody {
 	private static boolean OK = false;
 	
 	public BodyEvent(ArrayList<Button> cardButtonArray, ArrayList<Button> txtButtonArray, ArrayList<Button> delButtonArray) {

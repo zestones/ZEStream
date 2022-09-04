@@ -13,10 +13,10 @@ import javax.swing.SwingUtilities;
 
 import body.bibliotheque.Bibliotheque;
 import body.main.Body;
-import home.IFrame;
+import menu.IMenu;
 import utils.UI.Button;
 
-public class EpisodeEvent implements IFrame {
+public class EpisodeEvent implements IMenu {
 	private ArrayList<Button> episodeButtonArray;
 	
 	public EpisodeEvent(ArrayList<Button> episodeButtonArray) {
