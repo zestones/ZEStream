@@ -10,12 +10,24 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import body.bibliotheque.Bibliotheque;
+import body.main.Body;
+import filter.FileSearch;
+import menu.Menu;
+import utils.OsUtils;
+import utils.UI.PopUp;
+
 public class Home implements IFrame {
 	
+	public static String SEPARATOR;
 	public static ArrayList<String> foldersPath = new ArrayList<String>();
 	public static ArrayList<String> coverPathArray = new ArrayList<String>();
 	
 	public Home() {
+		
+		if(OsUtils.isWindows()) SEPARATOR = "\\";
+		else SEPARATOR = "/";
+		
 		frame.setPreferredSize(DIM_FRAME);
 		frame.setResizable(false);
 
@@ -116,10 +128,10 @@ public class Home implements IFrame {
 	}
 	
 	private static String getImageExtension(String folder, String path) {
-		File f = new File(path + "/" + folder + "/" + "Cover");
+		File f = new File(path + SEPARATOR + folder + SEPARATOR + "Cover");
 		if(!f.isDirectory() && !f.isFile()) return "";
 		
-		FileSearch fsImage = new FileSearch(path + "/" + folder + "/" + "Cover", 1);
+		FileSearch fsImage = new FileSearch(path + SEPARATOR + folder + SEPARATOR + "Cover", 1);
 		
 		for (String img : fsImage.getFileInDepth()) {
 			if (folder.equalsIgnoreCase(FileSearch.getFileName(img)))
@@ -136,12 +148,12 @@ public class Home implements IFrame {
 		String extension = "";
 		for (String file : fs.getFileInDepth()) {
 			
-			File f = new File(path + "/" + file);
+			File f = new File(path + SEPARATOR + file);
 			if (f.isFile()) continue;
 			
 			extension = getImageExtension(file, path);
 			
-			coverPathArray.add(path + "/" + file + "/Cover/" + file + "." + extension);		
+			coverPathArray.add(path + SEPARATOR + file + SEPARATOR + "Cover" + SEPARATOR + file + "." + extension);		
 		}
 	}
 	
@@ -153,17 +165,17 @@ public class Home implements IFrame {
 			String extension = "";
 			for (String file : fs.getFileInDepth()) {
 				
-				File f = new File(path + "/" + file);
+				File f = new File(path + SEPARATOR + file);
 				if (f.isFile()) continue;
 					
 				extension = getImageExtension(file, path);
-				coverPathArray.add(path + "/" + file + "/Cover/" + file + "." + extension);					
+				coverPathArray.add(path + SEPARATOR + file + SEPARATOR + "Cover" + SEPARATOR + file + "." + extension);					
 			}				
 		}
 	}
 	
 	private static void sortPathArray() {
-		String separator ="/";
+		String separator = SEPARATOR;
 		
 		int pos;
         String temp;

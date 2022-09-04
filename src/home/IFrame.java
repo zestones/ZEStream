@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import menu.MenuButton;
+import utils.UI.Button;
+import utils.shape.Position;
+
 public interface IFrame {
 	
 	String FILE_FOLDER_PATH = "./.res/folders-path.txt";
