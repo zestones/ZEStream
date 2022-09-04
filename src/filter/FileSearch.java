@@ -14,7 +14,7 @@ public class FileSearch {
     	File[] file = new File(path).listFiles();
     	
     	if (file == null)
-    		new PopUp("<html> Une erreur inatendu est survenue ! Impossible de charger les fichier.. <br/><br/>L'erreur provient très probablement de caractère non reconnue dans le nom du dossier.</html>", "Erreur !", JOptionPane.ERROR_MESSAGE);
+    		new PopUp("<html> Une erreur inatendu est survenue ! Impossible de charger les fichier.. <br/><br/>Vérifier les chemins dans les paramètres !</html>", "Erreur !", JOptionPane.ERROR_MESSAGE);
     	else 
     		this.filesInDepth = fileScanner(file, depth);    		
     }

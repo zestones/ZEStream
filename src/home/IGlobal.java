@@ -5,11 +5,14 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import utils.OsUtils;
+import utils.UI.ScrollPanel;
+
 public interface IGlobal {
-	
+	String SEPARATOR = (OsUtils.isWindows()) ? "\\" : "/";
+
 	// Properties of the frame
 	JFrame frame = new JFrame("ZEStream");
 
@@ -23,7 +26,7 @@ public interface IGlobal {
 	// Panel of the main body of the frame
 	JPanel container = new JPanel();
 	// The scrollable panel
-	JScrollPane sp =  new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	ScrollPanel sp =  new ScrollPanel(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 	// Properties of a card object
 	int PADDING_CARDS_SIDE = 65;

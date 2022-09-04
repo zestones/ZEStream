@@ -13,6 +13,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import filter.FileSearch;
+import home.IGlobal;
 import utils.UI.PopUp;
 
 public abstract class Bibliotheque {
@@ -29,7 +30,6 @@ public abstract class Bibliotheque {
 	private static final String FILE = "./.res/bibliotheque.txt";
 	
 	public static void updateBiblioPathFolders(String parent, String ep, String path) {
-		getBiblioCoverFolders();
 
 		if(pathAlreadySaved(new File(parent).getName())) {
 			PopUp confirm = new PopUp("Etes-vous sûres de vouloir mettre à jour cette série ?", "Selectioner une option", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -43,6 +43,8 @@ public abstract class Bibliotheque {
 			saveFolderPath(parent, ep, path);
 			new PopUp("Serie ajouté à la bibliotheque", "Information", JOptionPane.INFORMATION_MESSAGE);
 		}
+		
+		getBiblioCoverFolders();
 	}
 	
 	private static void updateBibliotheque(String parent) {
@@ -208,7 +210,7 @@ public abstract class Bibliotheque {
 				String[] separated = data.split("\\|");
 				String folderPath = separated[0];
 				String title = separated[1];
-				String path = folderPath + "/Cover/";
+				String path = folderPath + IGlobal.SEPARATOR + "Cover" + IGlobal.SEPARATOR;
 				String ext = getImageExtension(path, title);
 
 				seriesParent.add(separated[0]);

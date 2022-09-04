@@ -7,15 +7,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 
+import body.IBody;
 import body.bibliotheque.Bibliotheque;
 import body.main.Body;
-import body.main.IBody;
 import filter.FileSearch;
 import home.IGlobal;
 import utils.UI.Button;
@@ -39,7 +36,7 @@ public class Episode implements IGlobal {
 			Body.parentPathName = currentFolderPath;		
 		}
 		else {
-			Body.currentPath += "/" + folderName;
+			Body.currentPath += IGlobal.SEPARATOR + folderName;
 			currentFolderPath = Body.currentPath ;	
 		}
 		
@@ -54,8 +51,7 @@ public class Episode implements IGlobal {
 		
 		container.setBackground(DARK_THEME);
 		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));
-		sp.getVerticalScrollBar().setValue(0);
-		
+			
 	    container.setLayout(null);
 	    container.add(IBody.backButton);
 	    
@@ -94,21 +90,8 @@ public class Episode implements IGlobal {
 	    
 		fillBody(fs);
 		
-	    sp.getViewport().add(container);
-		sp.setBorder(BorderFactory.createEmptyBorder());	
-		sp.getVerticalScrollBar().setUnitIncrement(20);
-		
-		UIManager.put("ScrollBar.width", 22);
+		sp.updateScrollPanelStyle();
 
-		sp.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
-		    @Override
-		    protected void configureScrollBarColors() {
-		        this.thumbColor = new Color(200, 185, 200);
-		    }
-		});
-		
-		UIManager.put("ScrollBar.width", 17);
-		
 		frame.getContentPane().add(sp);
 		EpisodeEvent ee = new EpisodeEvent(episodeButtonArray);
 		ee.unsetHoverAllButton("");
@@ -123,7 +106,7 @@ public class Episode implements IGlobal {
 		Position p = new Position(90, 385);
 		for (String file : filesArray) {
 			
-			File f = new File(Body.currentPath + "/" + file);
+			File f = new File(Body.currentPath + IGlobal.SEPARATOR + file);
 			if (f.isDirectory()) continue;
 			
 			Color fore = new Color(50, 50, 50);

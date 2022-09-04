@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
+import body.IBody;
 import body.bibliotheque.Bibliotheque;
 import body.episode.Episode;
 import filter.FileSearch;
 import home.Home;
+import home.IGlobal;
 import utils.UI.Button;
 
 public class BodyEvent implements IBody {
@@ -28,7 +30,7 @@ public class BodyEvent implements IBody {
 			public void actionPerformed(ActionEvent e) {
 				clearBody();
 				
-				String separator = "/";
+				String separator = IGlobal.SEPARATOR;
 				
 				int sepPos = Body.currentPath.lastIndexOf(separator);
 				String folderPath = Body.currentPath.substring(0, sepPos);
@@ -115,7 +117,7 @@ public class BodyEvent implements IBody {
 								initBodyFirstDepth(txtButtonArray, j);
 								break;
 							}
-							else folderPath = Body.currentPath + "/" + txtButtonArray.get(j).getName();
+							else folderPath = Body.currentPath + IGlobal.SEPARATOR + txtButtonArray.get(j).getName();
 														
 							clearBody();
 							
@@ -143,7 +145,7 @@ public class BodyEvent implements IBody {
 								initBodyFirstDepth(cardButtonArray, j);
 								break;
 							}
-							else folderPath = Body.currentPath + "/" + cardButtonArray.get(j).getName();
+							else folderPath = Body.currentPath + IGlobal.SEPARATOR + cardButtonArray.get(j).getName();
 														
 							clearBody();
 							
@@ -162,7 +164,7 @@ public class BodyEvent implements IBody {
 		
 		if (fs.getFileInDepth().size() > 0) {
 			
-			File f = new File(folderPath + "/" + fs.getFileInDepth().get(0));									
+			File f = new File(folderPath + IGlobal.SEPARATOR + fs.getFileInDepth().get(0));									
 			
 			if (f.isDirectory()) new Body(folderPath);
 			else new Episode(buttonArray.get(index).getImagePath(), Body.previousPage, buttonArray.get(index).getName());
@@ -186,7 +188,7 @@ public class BodyEvent implements IBody {
 			String firstFile = fs.getFileInDepth().get(0);
 			
 			if (firstFile.equalsIgnoreCase("Cover")) firstFile = fs.getFileInDepth().get(1);
-			File f = new File(folderPath + "/" + firstFile);
+			File f = new File(folderPath + IGlobal.SEPARATOR + firstFile);
 			
 			if (f.isDirectory()) new Body(folderPath);
 			else {

@@ -8,9 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import home.Home;
 import home.IGlobal;
@@ -29,9 +27,7 @@ public class Setting implements IGlobal, ISetting {
     
 	public Setting() {
 		container.setBackground(DARK_THEME);
-		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));
-		sp.getVerticalScrollBar().setValue(0);
-		
+		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));	
 	    container.setLayout(null);
 	    	    
 		container.add(new Title("Emplacement de recherche", new Position(50, 60), 32, Color.white, Font.PLAIN));
@@ -51,20 +47,7 @@ public class Setting implements IGlobal, ISetting {
 		
 		new SettingEvent(deleteButtonArray, cardButtonArray);
 
-		sp.getViewport().add(container);
-		sp.setBorder(BorderFactory.createEmptyBorder());	
-		sp.getVerticalScrollBar().setUnitIncrement(20);
-		
-		UIManager.put("ScrollBar.width", 22);
-
-		sp.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
-		    @Override
-		    protected void configureScrollBarColors() {
-		        this.thumbColor = new Color(200, 185, 200);
-		    }
-		});
-		
-		UIManager.put("ScrollBar.width", 17);
+		sp.updateScrollPanelStyle();
 
 		frame.getContentPane().add(sp);
 	}

@@ -1,4 +1,4 @@
-package body.main;
+package body;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,4 +23,6 @@ public interface IBody extends IMenu {
 	// return button
 	Button backButton = new Button(new Position(0, 25), "Retour", 22, new Dimension(180, 35), Color.white, new Color(189, 1, 1), Font.BOLD);
 
+	Color SAVED_CARD_COLOR = new Color(85, 100, 185);
+	Color DEFAULT_CARD_COLOR = Color.white;
 }

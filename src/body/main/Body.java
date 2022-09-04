@@ -7,13 +7,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.BorderFactory;
-import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 
+import body.IBody;
 import body.bibliotheque.Bibliotheque;
 import filter.FileSearch;
+import home.IGlobal;
 import utils.UI.Button;
 import utils.UI.Title;
 import utils.shape.Position;
@@ -42,7 +41,6 @@ public class Body implements IBody {
 		
 		container.setBackground(DARK_THEME);
 		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));
-		sp.getVerticalScrollBar().setValue(0);
 		
 	    container.setLayout(null);
 	    	    
@@ -58,20 +56,7 @@ public class Body implements IBody {
 		this.fillBody(coverPathArray);		
 		new BodyEvent(cardButtonArray, txtButtonArray, delButtonArray);
 
-		sp.getViewport().add(container);
-		sp.setBorder(BorderFactory.createEmptyBorder());	
-		sp.getVerticalScrollBar().setUnitIncrement(20);
-		
-		UIManager.put("ScrollBar.width", 22);
-
-		sp.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
-		    @Override
-		    protected void configureScrollBarColors() {
-		        this.thumbColor = new Color(200, 185, 200);
-		    }
-		});
-		
-		UIManager.put("ScrollBar.width", 17);
+		sp.updateScrollPanelStyle();
 
 		frame.getContentPane().add(sp);
 	}
@@ -83,8 +68,6 @@ public class Body implements IBody {
 				
 		container.setBackground(DARK_THEME);
 		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));
-		sp.getVerticalScrollBar().setValue(0);
-		sp.getVerticalScrollBar().setUnitIncrement(20);
 
 	    container.setLayout(null);
 
@@ -106,17 +89,16 @@ public class Body implements IBody {
 		this.fillBody(folderPath);
 		new BodyEvent(cardButtonArray, txtButtonArray, delButtonArray);
 
-		sp.getViewport().add(container);
-		sp.setBorder(BorderFactory.createEmptyBorder());	
-		
+		sp.updateScrollPanelStyle();
+
 		frame.getContentPane().add(sp);
 	}
 	
 	private String getImageExtension(String path, String file) {
-		File f = new File(path + "/" + "Cover");
+		File f = new File(path + IGlobal.SEPARATOR + "Cover");
 		if (!f.isDirectory() || f.isFile()) return "";
 		
-		FileSearch fsImage = new FileSearch(path + "/Cover", 1);
+		FileSearch fsImage = new FileSearch(path + IGlobal.SEPARATOR + "Cover", 1);
 				
 		for (String img : fsImage.getFileInDepth()) {
 			if (file.equalsIgnoreCase(FileSearch.getFileName(img)))
@@ -135,7 +117,7 @@ public class Body implements IBody {
 
 				String titlePath = Bibliotheque.seriesPath.get(Bibliotheque.seriesTitle.indexOf(parent));
 				String[] separated = titlePath.split(parentPathName);
-				coloredPath = separated[1].split("/");
+				coloredPath = separated[1].split(IGlobal.SEPARATOR);
 			}
 		}
 		
@@ -155,24 +137,24 @@ public class Body implements IBody {
 		int index = 0;
 		for (String file : filesArray) {
 			
-			File f = new File(path + "/" + file);
+			File f = new File(path + IGlobal.SEPARATOR + file);
 			if (f.isFile()) continue;
 			
 			if (!FileSearch.getFileName(file).equalsIgnoreCase("Cover")) {
 				
 				String extension = getImageExtension(parentPathName, file);
-				Button anime = new Button(cardPos, parentPathName + "/Cover/" + file + "." + extension, FileSearch.getFileName(file), DIM_CARD);
+				Button anime = new Button(cardPos, parentPathName + IGlobal.SEPARATOR + "Cover" + IGlobal.SEPARATOR + file + "." + extension, FileSearch.getFileName(file), DIM_CARD);
 										
 				String title = FileSearch.getFileName(file);
-				Color c = Color.white;
+				Color c = DEFAULT_CARD_COLOR;
 				if (coloredPath != null) {
 					for(int i = 0; i < coloredPath.length; i++) {
-						if (coloredPath[i].equals(title)) c = new Color(85, 100, 185);
+						if (coloredPath[i].equals(title)) c = SAVED_CARD_COLOR;
 					}					
 				}
 					
 				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), title, 18, c, DARK_THEME, Font.PLAIN);
-				txt.setImagePath(folderPath + "/Cover/" + file + "." + extension);
+				txt.setImagePath(folderPath + IGlobal.SEPARATOR + "Cover" + IGlobal.SEPARATOR + file + "." + extension);
 				
 				this.cardButtonArray.add(anime);
 				this.txtButtonArray.add(txt);
@@ -208,9 +190,9 @@ public class Body implements IBody {
 			
 			Button anime = new Button(cardPos, path, fileName, DIM_CARD);		
 			
-			Color c = Color.white;
+			Color c = DEFAULT_CARD_COLOR;
 			for (String t : Bibliotheque.seriesTitle) {
-				if (t.equals(fileName)) c = new Color(85, 100, 185);
+				if (t.equals(fileName)) c = SAVED_CARD_COLOR;
 			}
 			
 			txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), fileName, 18, c, DARK_THEME, Font.PLAIN);
@@ -253,9 +235,9 @@ public class Body implements IBody {
 		
 		int j = 0;
 		while (d.getWidth() < DIM_CARD.getWidth()) {
-			Color c = Color.white;
+			Color c = DEFAULT_CARD_COLOR;
 			for (String t : Bibliotheque.seriesTitle) {
-				if (t.equals(fileName)) c = Color.blue;
+				if (t.equals(fileName)) c = SAVED_CARD_COLOR;
 			}
 				
 			splittedName += separated[j] + " ";
