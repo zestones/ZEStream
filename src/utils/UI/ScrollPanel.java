@@ -20,7 +20,7 @@ import utils.shape.Position;
 public class ScrollPanel extends JScrollPane implements IGlobal {
 	private static final long serialVersionUID = 1L;
 	
-	private static final int REFRESH_HEIGHT = 60;
+	private static final int REFRESH_HEIGHT = 42;
 	
 	public Position posView = new Position(0, 0);	
 	public static int lastPosY = 0;
@@ -35,7 +35,7 @@ public class ScrollPanel extends JScrollPane implements IGlobal {
 		
 		getViewport().add(container);
 		setBorder(BorderFactory.createEmptyBorder());	
-		getVerticalScrollBar().setUnitIncrement(20);
+		getVerticalScrollBar().setUnitIncrement(7);
 		
 		UIManager.put("ScrollBar.width", 22);
 
@@ -59,14 +59,15 @@ public class ScrollPanel extends JScrollPane implements IGlobal {
 				posView = new Position((int) p.getX(), (int) p.getY());
 								
 				if (e.getWheelRotation() > 0) {
-//					System.out.println((posView.getY() - lastPosY));
+					System.out.println((posView.getY() - lastPosY));
 					
 					if (posView.getY() - lastPosY == REFRESH_HEIGHT) {
 						lastPosY = posView.getY();
 						
 						if (Body.currentOnglet.equals("Biblio"))
 							Body.updateBodyContent(Bibliotheque.coverPathArray);
-						else if (Body.currentOnglet.equals("Anime") && Body.depth == 0) Body.updateBodyContent(Home.coverPathArray);				
+						else if (Body.currentOnglet.equals("Anime") && Body.depth == 0) 
+							Body.updateBodyContent(Home.coverPathArray);				
 					}
 				} 	
 		    }
