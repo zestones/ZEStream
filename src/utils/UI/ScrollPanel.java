@@ -1,7 +1,6 @@
 package utils.UI;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
@@ -12,17 +11,18 @@ import javax.swing.JViewport;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
+import body.bibliotheque.Bibliotheque;
+import body.main.Body;
+import home.Home;
 import home.IGlobal;
 import utils.shape.Position;
 
 public class ScrollPanel extends JScrollPane implements IGlobal {
 	private static final long serialVersionUID = 1L;
 	
-	private static final int REFRESH_HEIGHT = 150;
+	private static final int REFRESH_HEIGHT = 60;
 	
-	public Position posView = new Position(0, 0);
-	public Dimension dimView = new Dimension(0, 0);
-	
+	public Position posView = new Position(0, 0);	
 	public static int lastPosY = 0;
 	
 	public ScrollPanel(int vsbPolicy, int hsbPolicy) {
@@ -56,15 +56,17 @@ public class ScrollPanel extends JScrollPane implements IGlobal {
 		    	final JViewport viewport = sp.getViewport();
 				
 				Point p = viewport.getViewPosition();
-				
 				posView = new Position((int) p.getX(), (int) p.getY());
-				dimView = new Dimension(viewport.getWidth(), viewport.getHeight());
 								
 				if (e.getWheelRotation() > 0) {
-					if (posView.getY() - lastPosY > REFRESH_HEIGHT) {
+//					System.out.println((posView.getY() - lastPosY));
+					
+					if (posView.getY() - lastPosY == REFRESH_HEIGHT) {
 						lastPosY = posView.getY();
-						System.out.println("\n--------- UPDATE VIEW --------------\n");
-//						Body.updateBodyContent(Home.coverPathArray);				
+						
+						if (Body.currentOnglet.equals("Biblio"))
+							Body.updateBodyContent(Bibliotheque.coverPathArray);
+						else Body.updateBodyContent(Home.coverPathArray);				
 					}
 				} 	
 		    }

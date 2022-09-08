@@ -14,24 +14,29 @@ import body.bibliotheque.Bibliotheque;
 import filter.FileSearch;
 import home.IGlobal;
 import utils.UI.Button;
+import utils.UI.ScrollPanel;
 import utils.UI.Title;
 import utils.shape.Position;
 
 public class Body implements IBody {
-	
-    private ArrayList<Button> cardButtonArray;
-    private ArrayList<Button> txtButtonArray;
-    private ArrayList<Button> delButtonArray;
 
+	private final static int CONTAINER_WIDTH = FRAME_WIDTH;
+	
+    private static ArrayList<Button> cardButtonArray;
+    private static ArrayList<Button> txtButtonArray;
+    private static ArrayList<Button> delButtonArray;
+
+    private static Position lastDisplayedPos;
+    
     public static String parentPathName;
-    static String subFolders; 
-    public static int depth;
-	public static String previousPage;
-	public static String currentPath;
+    public static String previousPage;
+    public static String currentPath;
+    public static String subFolders; 
+	public static int depth;
 	
-	static String currentOnglet; 
+	private static int indexDisplayView = 0;
+	public static String currentOnglet; 
 	
-	final static int CONTAINER_WIDTH = FRAME_WIDTH;
 	
 	public Body(ArrayList<String> coverPathArray, String onglet) {
 		currentOnglet = onglet;
@@ -39,6 +44,10 @@ public class Body implements IBody {
 		previousPage = "";
 		currentPath = "";
 		
+		sp.posView = new Position(0, 0);
+		ScrollPanel.lastPosY = 0;
+		indexDisplayView = 0;
+
 		container.setBackground(DARK_THEME);
 		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));
 		
@@ -49,9 +58,9 @@ public class Body implements IBody {
 		// TODO : Filter !!
 		container.add(sortButton);
 		
-		this.cardButtonArray = new ArrayList<Button>();
-		this.txtButtonArray = new ArrayList<Button>();
-		this.delButtonArray = new ArrayList<Button>();
+		cardButtonArray = new ArrayList<Button>();
+		txtButtonArray = new ArrayList<Button>();
+		delButtonArray = new ArrayList<Button>();
 
 		this.fillBody(coverPathArray);		
 		new BodyEvent(cardButtonArray, txtButtonArray, delButtonArray);
@@ -63,9 +72,12 @@ public class Body implements IBody {
 	
 	public Body(String folderPath) {
 		depth++;
-						
 		if (depth == 1) parentPathName = folderPath;
 				
+		sp.posView = new Position(0, 0);
+		ScrollPanel.lastPosY = 0;
+		indexDisplayView = 0;
+		
 		container.setBackground(DARK_THEME);
 		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));
 
@@ -80,8 +92,8 @@ public class Body implements IBody {
 		
 		container.add(pageTitle);
 	    // TODO : add cards events ! 
-		this.cardButtonArray = new ArrayList<Button>();
-		this.txtButtonArray = new ArrayList<Button>();
+		cardButtonArray = new ArrayList<Button>();
+		txtButtonArray = new ArrayList<Button>();
 
 		currentPath = folderPath;
 		previousPage = title;
@@ -107,6 +119,144 @@ public class Body implements IBody {
 		
 		return "";
 	}
+	
+	// fill the body main page
+	private void fillBody(ArrayList<String> coverPathArray) {
+
+		Position cardPos = new Position(70, 190);		
+		Button txt = new Button(new Position(50,50), "", 18, Color.white, Color.red, Font.PLAIN);
+		
+		int index = 0;
+		for (String path : coverPathArray) {
+						
+			File file = new File(path);
+			String fileName = FileSearch.getFileName(file.getName());
+								
+			if (cardPos.getY() >= sp.posView.getY() && cardPos.getY() <= sp.posView.getY() + FRAME_HEIGHT - MENU_HEIGHT ) {
+				Button anime = new Button(cardPos, path, fileName, DIM_CARD);		
+
+				Color c = DEFAULT_CARD_COLOR;
+				for (String t : Bibliotheque.seriesTitle) {
+					if (t.equals(fileName)) c = SAVED_CARD_COLOR;
+				}
+
+				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), fileName, 18, c, DARK_THEME, Font.PLAIN);
+				
+				if(txt.getTextDimension().getWidth() > DIM_CARD.getWidth())
+					txt = adjustTextButton(fileName, anime, cardPos);
+				
+				txt.setImagePath(path);
+				
+				cardButtonArray.add(anime);
+				txtButtonArray.add(txt);
+				
+				if (currentOnglet.equals("Biblio")) {
+					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25));
+					delButtonArray.add(delete);
+					container.add(delete);				
+				}
+				
+				lastDisplayedPos = new Position(cardPos.getX(), cardPos.getY());
+				
+				lastDisplayedPos.setX(lastDisplayedPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE);				
+				
+				if (lastDisplayedPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE >= FRAME_WIDTH && index < coverPathArray.size() - 1) {
+					lastDisplayedPos.setX(70);
+					lastDisplayedPos.setY(lastDisplayedPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP);
+				}
+				
+				container.add(anime);
+				container.add(txt);
+				
+				indexDisplayView++;
+			}
+						
+			cardPos.setX(cardPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE);				
+			
+			if (cardPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE >= FRAME_WIDTH && index < coverPathArray.size() - 1) {
+				cardPos.setX(70);
+				cardPos.setY(cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP);
+			}
+									
+			index++;
+		}
+	
+	    container.setPreferredSize(new Dimension(CONTAINER_WIDTH, cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP));
+	}
+	
+	public static void updateBodyContent(ArrayList<String> coverPathArray) {
+		
+		ArrayList<Button> cardButtonArray = new ArrayList<Button>();
+	    ArrayList<Button> txtButtonArray = new ArrayList<Button>();
+	    ArrayList<Button> delButtonArray = new ArrayList<Button>();
+		
+		Position cardPos = new Position(lastDisplayedPos.getX(), lastDisplayedPos.getY());
+		Button txt = new Button(new Position(50,50), "", 18, Color.white, Color.red, Font.PLAIN);
+		
+		int index = 0;
+		for (int i = indexDisplayView; i < coverPathArray.size(); i++) {
+						
+			String path = coverPathArray.get(i);
+			
+			File file = new File(path);
+			String fileName = FileSearch.getFileName(file.getName());
+								
+			if (cardPos.getY() >= sp.posView.getY() && cardPos.getY() <= sp.posView.getY() + FRAME_HEIGHT - MENU_HEIGHT ) {
+				Button anime = new Button(cardPos, path, fileName, DIM_CARD);		
+
+				Color c = DEFAULT_CARD_COLOR;
+				for (String t : Bibliotheque.seriesTitle) {
+					if (t.equals(fileName)) c = SAVED_CARD_COLOR;
+				}
+
+				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), fileName, 18, c, DARK_THEME, Font.PLAIN);
+				
+				if(txt.getTextDimension().getWidth() > DIM_CARD.getWidth())
+					txt = adjustTextButton(fileName, anime, cardPos);
+				
+				txt.setImagePath(path);
+				
+				cardButtonArray.add(anime);
+				txtButtonArray.add(txt);
+				
+				if (currentOnglet.equals("Biblio")) {
+					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25));
+					delButtonArray.add(delete);
+					container.add(delete);				
+				}
+						
+				lastDisplayedPos = new Position(cardPos.getX(), cardPos.getY());
+				
+				lastDisplayedPos.setX(lastDisplayedPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE);				
+				
+				if (lastDisplayedPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE >= FRAME_WIDTH && index < coverPathArray.size() - 1) {
+					lastDisplayedPos.setX(70);
+					lastDisplayedPos.setY(lastDisplayedPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP);
+				}
+		
+				
+				container.add(anime);
+				container.add(txt);
+				
+				indexDisplayView++;
+			}
+	
+			cardPos.setX(cardPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE);				
+			
+			if (cardPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE >= FRAME_WIDTH && index < coverPathArray.size() - 1) {
+				cardPos.setX(70);
+				cardPos.setY(cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP);
+			}
+									
+			index++;
+		}
+				
+	    container.setPreferredSize(new Dimension(CONTAINER_WIDTH, cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP));
+	    container.repaint();
+	    
+		new BodyEvent(cardButtonArray, txtButtonArray, delButtonArray);
+	}
+	
 	
 	private void fillBody(String path) {
 		
@@ -156,8 +306,8 @@ public class Body implements IBody {
 				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), title, 18, c, DARK_THEME, Font.PLAIN);
 				txt.setImagePath(folderPath + IGlobal.SEPARATOR + "Cover" + IGlobal.SEPARATOR + file + "." + extension);
 				
-				this.cardButtonArray.add(anime);
-				this.txtButtonArray.add(txt);
+				cardButtonArray.add(anime);
+				txtButtonArray.add(txt);
 				
 				cardPos.setX(cardPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE);				
 				
@@ -177,56 +327,7 @@ public class Body implements IBody {
 	    container.setPreferredSize(new Dimension(CONTAINER_WIDTH, cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP));
 	}
 	
-	private void fillBody(ArrayList<String> coverPathArray) {
-
-		Position cardPos = new Position(70, 190);
-		Button txt = new Button(new Position(50,50), "", 18, Color.white, Color.red, Font.PLAIN);
-				
-		int index = 0;
-		for (String path : coverPathArray) {
-						
-			File file = new File(path);
-			String fileName = FileSearch.getFileName(file.getName());
-			
-			Button anime = new Button(cardPos, path, fileName, DIM_CARD);		
-			
-			Color c = DEFAULT_CARD_COLOR;
-			for (String t : Bibliotheque.seriesTitle) {
-				if (t.equals(fileName)) c = SAVED_CARD_COLOR;
-			}
-			
-			txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), fileName, 18, c, DARK_THEME, Font.PLAIN);
-					
-			if(txt.getTextDimension().getWidth() > DIM_CARD.getWidth())
-				txt = adjustTextButton(fileName, anime, cardPos);
-			
-			txt.setImagePath(path);
-			
-			this.cardButtonArray.add(anime);
-			this.txtButtonArray.add(txt);
-
-			if (currentOnglet.equals("Biblio")) {
-				Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25));
-				delButtonArray.add(delete);
-				container.add(delete);				
-			}
-			
-			cardPos.setX(cardPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE);				
-			
-			if (cardPos.getX() + CARD_WIDTH + PADDING_CARDS_SIDE >= FRAME_WIDTH && index < coverPathArray.size() - 1) {
-				cardPos.setX(70);
-				cardPos.setY(cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP);
-			}
-						
-			container.add(anime);
-			container.add(txt);
-			
-			index++;
-		}	
-	    container.setPreferredSize(new Dimension(CONTAINER_WIDTH, cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP));
-	}
-	
-	private Button adjustTextButton(String fileName, Button anime, Position cardPos) {
+	private static Button adjustTextButton(String fileName, Button anime, Position cardPos) {
 		
 		String[] separated = fileName.split(" ");
 		Button txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), separated[0], 18, Color.white, DARK_THEME, Font.PLAIN);
