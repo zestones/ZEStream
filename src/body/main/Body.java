@@ -63,7 +63,7 @@ public class Body implements IBody {
 	
 	public Body(String folderPath) {
 		depth++;
-				
+						
 		if (depth == 1) parentPathName = folderPath;
 				
 		container.setBackground(DARK_THEME);
@@ -126,7 +126,7 @@ public class Body implements IBody {
 		FileSearch fs = new FileSearch(folderPath, 1);
 		Position cardPos = new Position(70, 190);
 
-		Button txt = new Button(new Position(50,50), "test", 18, Color.white, Color.red, Font.PLAIN);
+		Button txt = new Button(new Position(50,50), "", 18, Color.white, Color.red, Font.PLAIN);
 						
 		ArrayList<String> filesArray = new ArrayList<>();
 		filesArray = fs.getFileInDepth();
