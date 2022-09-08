@@ -66,7 +66,7 @@ public class ScrollPanel extends JScrollPane implements IGlobal {
 						
 						if (Body.currentOnglet.equals("Biblio"))
 							Body.updateBodyContent(Bibliotheque.coverPathArray);
-						else Body.updateBodyContent(Home.coverPathArray);				
+						else if (Body.currentOnglet.equals("Anime") && Body.depth == 0) Body.updateBodyContent(Home.coverPathArray);				
 					}
 				} 	
 		    }
