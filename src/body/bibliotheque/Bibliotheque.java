@@ -26,25 +26,30 @@ public abstract class Bibliotheque {
 	public static ArrayList<String> seriesParent = new ArrayList<String>();
 	public static ArrayList<String> seriesTitle = new ArrayList<String>();
 
-	
 	private static final String FILE = "./.res/bibliotheque.txt";
 	
-	public static void updateBiblioPathFolders(String parent, String ep, String path) {
-
+	public static boolean updateBiblioPathFolders(String parent, String ep, String path) {
+		boolean success = false;
 		if(pathAlreadySaved(new File(parent).getName())) {
 			PopUp confirm = new PopUp("Etes-vous sûres de vouloir mettre à jour cette série ?", "Selectioner une option", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 			if(confirm.getAnswer() == JOptionPane.YES_OPTION) {
+				
 				updateBibliotheque(parent);
 				saveFolderPath(parent, ep, path);
 				getBiblioCoverFolders();
+
+				success = true;
 			}
 		}
 		else {
 			saveFolderPath(parent, ep, path);
 			new PopUp("Serie ajouté à la bibliotheque", "Information", JOptionPane.INFORMATION_MESSAGE);
+			success = true;
 		}
 		
 		getBiblioCoverFolders();
+		
+		return success;
 	}
 	
 	private static void updateBibliotheque(String parent) {

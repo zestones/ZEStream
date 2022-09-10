@@ -37,7 +37,6 @@ public class Body implements IBody {
 	private static int indexDisplayView = 0;
 	public static String currentOnglet; 
 	
-	
 	public Body(ArrayList<String> coverPathArray, String onglet) {
 		currentOnglet = onglet;
 		depth = 0;
@@ -321,7 +320,7 @@ public class Body implements IBody {
 			}	
 		}
 		
-	    container.setPreferredSize(new Dimension(CONTAINER_WIDTH, cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP));
+		container.setPreferredSize(new Dimension(CONTAINER_WIDTH, cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP));	
 	}
 	
 	private static Button adjustTextButton(String fileName, Button anime, Position cardPos) {

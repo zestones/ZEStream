@@ -25,7 +25,9 @@ public class Episode implements IGlobal {
     public static String currentFolderPath;
     
     private int index;
-	public Episode(String coverPath, String title, String folderName) {		
+    protected static int bookMarksBtn = 0;
+
+    public Episode(String coverPath, String title, String folderName) {		
 			
 		Body.depth++;
 		this.episodeButtonArray = new ArrayList<Button>();
@@ -104,8 +106,8 @@ public class Episode implements IGlobal {
 		Collections.sort(filesArray);
 		
 		Position p = new Position(90, 385);
+		int i = 0;
 		for (String file : filesArray) {
-			
 			File f = new File(Body.currentPath + IGlobal.SEPARATOR + file);
 			if (f.isDirectory()) continue;
 			
@@ -113,8 +115,9 @@ public class Episode implements IGlobal {
 			Color back = new Color(97, 97, 97);
 			
 			if (index != -1 && file.toString().equals(Bibliotheque.seriesEpisode.get(index))) {
-				fore = new Color(180, 175, 225);
-				back = new Color(60, 80, 161);
+				fore = new Color(80, 80, 85);
+				back = Color.red;
+				bookMarksBtn = i;
 			}
 			
 			Button btn = new Button(p, file, 16, new Dimension(FRAME_WIDTH - 225 , 50), fore, back, Font.BOLD);
@@ -122,9 +125,11 @@ public class Episode implements IGlobal {
 
 			p = new Position(p.getX(), p.getY() + 55);
 			container.add(btn);
+			
+			i++;
 		}
 		
-		  container.setPreferredSize(new Dimension(FRAME_WIDTH, p.getY()));
+		container.setPreferredSize(new Dimension(FRAME_WIDTH, p.getY()));
 	}
 	
 	private String getType(String folderName, String title) {
