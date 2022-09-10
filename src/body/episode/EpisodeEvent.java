@@ -1,6 +1,5 @@
 package body.episode;
 
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,11 +16,12 @@ import body.main.Body;
 import menu.IMenu;
 import utils.UI.Button;
 
-public class EpisodeEvent implements IMenu {
+public class EpisodeEvent implements IMenu, IEpisode {
 	private ArrayList<Button> episodeButtonArray;
 	
 	public EpisodeEvent(ArrayList<Button> episodeButtonArray) {
 		this.episodeButtonArray = episodeButtonArray;
+		
 		handleButtonEvent();
 		handleMouseMotion();
 	}
@@ -35,24 +35,27 @@ public class EpisodeEvent implements IMenu {
 						if(mouseEvent.getSource() == episodeButtonArray.get(i))
 							if (SwingUtilities.isRightMouseButton(mouseEvent)) {
 								
-								Button currentBookmarkedEp = episodeButtonArray.get(i);
-								Button lastBookmarkedEp = episodeButtonArray.get(Episode.bookMarksBtn);
-								
 								boolean success = Bibliotheque.updateBiblioPathFolders(Body.parentPathName, episodeButtonArray.get(i).getText(), Episode.currentFolderPath);
 								
 								if (success) {
 
-									currentBookmarkedEp.setBackgroundColor(Color.red);
-									currentBookmarkedEp.setForegroundColor(new Color(80, 80, 85));
+									if (episodeButtonArray.size() > Episode.bookMarksBtn) {
+										Button lastBookmarkedEp = episodeButtonArray.get(Episode.bookMarksBtn);
+										
+										lastBookmarkedEp.setBackgroundColor(EPISODE_BACKGROUND);
+										lastBookmarkedEp.setForegroundColor(EPISODE_FOREGROUND);
+										
+										lastBookmarkedEp.unsetHoverButton();
+										lastBookmarkedEp.repaint();
+									}
 									
-									lastBookmarkedEp.setBackgroundColor(new Color(97, 97, 97));
-									lastBookmarkedEp.setForegroundColor(new Color(50, 50, 50));
+									Button currentBookmarkedEp = episodeButtonArray.get(i);
 									
-									currentBookmarkedEp.unsetHoverButton();
-									lastBookmarkedEp.unsetHoverButton();
+									currentBookmarkedEp.setBackgroundColor(EPISODE_MARKED_BACKGROUND);
+									currentBookmarkedEp.setForegroundColor(EPISODE_MARKED_FOREGROUND);
 									
+									currentBookmarkedEp.unsetHoverButton();								
 									currentBookmarkedEp.repaint();
-									lastBookmarkedEp.repaint();
 
 									Episode.bookMarksBtn = i;
 								}

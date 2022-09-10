@@ -19,9 +19,9 @@ import utils.UI.Button;
 import utils.UI.Title;
 import utils.shape.Position;
 
-public class Episode implements IGlobal {
+public class Episode implements IGlobal, IEpisode {
 	
-    private ArrayList<Button> episodeButtonArray;
+    protected ArrayList<Button> episodeButtonArray;
     public static String currentFolderPath;
     
     private int index;
@@ -111,12 +111,12 @@ public class Episode implements IGlobal {
 			File f = new File(Body.currentPath + IGlobal.SEPARATOR + file);
 			if (f.isDirectory()) continue;
 			
-			Color fore = new Color(50, 50, 50);
-			Color back = new Color(97, 97, 97);
+			Color fore = EPISODE_FOREGROUND;
+			Color back = EPISODE_BACKGROUND;
 			
 			if (index != -1 && file.toString().equals(Bibliotheque.seriesEpisode.get(index))) {
-				fore = new Color(80, 80, 85);
-				back = Color.red;
+				fore = EPISODE_MARKED_FOREGROUND;
+				back = EPISODE_MARKED_BACKGROUND;
 				bookMarksBtn = i;
 			}
 			
