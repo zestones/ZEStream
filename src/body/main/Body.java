@@ -53,7 +53,7 @@ public class Body implements IBody {
 		
 	    container.setLayout(null);
 	    	    
-		container.add(new Title("Parcourir les Animes", new Position(50, 60), 32, Color.white, Font.PLAIN));
+		container.add(new Title("Parcourir les Séries", new Position(50, 60), 32, Color.white, Font.PLAIN));
 		container.add(new Title("Filtrer : ", new Position(50, 125), 14, Color.white, Font.PLAIN));
 		// TODO : Filter !!
 		container.add(sortButton);
@@ -192,7 +192,7 @@ public class Body implements IBody {
 		
 		Position cardPos = new Position(lastDisplayedPos.getX(), lastDisplayedPos.getY());
 		Button txt = new Button(new Position(50,50), "", 18, Color.white, Color.red, Font.PLAIN);
-		
+			
 		int index = 0;
 		for (int i = indexDisplayView; i < coverPathArray.size(); i++) {
 						
@@ -251,10 +251,8 @@ public class Body implements IBody {
 			index++;
 		}
 				
-	    container.setPreferredSize(new Dimension(CONTAINER_WIDTH, cardPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP));
 	    container.repaint();
-	    
-		new BodyEvent(cardButtonArray, txtButtonArray, delButtonArray);
+	    new BodyEvent(cardButtonArray, txtButtonArray, delButtonArray);
 	}
 	
 	

@@ -17,9 +17,9 @@ public interface IMenu extends IGlobal {
 	JPanel header = new JPanel();
 	
 	// the button of the menu
-	MenuButton anime = new MenuButton("Anime", 20, 20);
+	MenuButton anime = new MenuButton("Séries", 20, 20);
 	MenuButton biblio = new MenuButton("Bibliothèque", anime.getWidth() + 30, 20);
-	MenuButton param = new MenuButton("Paramètre", (int) (anime.getWidth() + biblio.getWidth()) + 30, 20);
+	MenuButton param = new MenuButton("Paramètres", (int) (anime.getWidth() + biblio.getWidth()) + 30, 20);
 	
 
 }
