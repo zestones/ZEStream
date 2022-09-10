@@ -14,6 +14,7 @@ import body.bibliotheque.Bibliotheque;
 import filter.FileSearch;
 import home.IGlobal;
 import utils.UI.Button;
+import utils.UI.Image;
 import utils.UI.ScrollPanel;
 import utils.UI.Title;
 import utils.shape.Position;
@@ -133,10 +134,17 @@ public class Body implements IBody {
 								
 			if (cardPos.getY() >= sp.posView.getY() && cardPos.getY() <= sp.posView.getY() + FRAME_HEIGHT - MENU_HEIGHT ) {
 				Button anime = new Button(cardPos, path, fileName, DIM_CARD);		
-
+				
 				Color c = DEFAULT_CARD_COLOR;
 				for (String t : Bibliotheque.seriesTitle) {
-					if (t.equals(fileName)) c = SAVED_CARD_COLOR;
+					if (t.equals(fileName)) {
+						c = SAVED_CARD_COLOR;
+						if (currentOnglet.equals("Anime")) {
+											
+							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/bookmark.png", new Dimension(20, 78));
+							container.add(bookmarks);
+						}
+					}
 				}
 
 				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), fileName, 18, c, DARK_THEME, Font.PLAIN);
@@ -205,9 +213,16 @@ public class Body implements IBody {
 
 				Color c = DEFAULT_CARD_COLOR;
 				for (String t : Bibliotheque.seriesTitle) {
-					if (t.equals(fileName)) c = SAVED_CARD_COLOR;
+					if (t.equals(fileName)) {
+						c = SAVED_CARD_COLOR;
+						if (currentOnglet.equals("Anime")) {
+											
+							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/bookmark.png", new Dimension(20, 78));
+							container.add(bookmarks);
+						}
+					}
 				}
-
+				
 				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), fileName, 18, c, DARK_THEME, Font.PLAIN);
 				
 				if(txt.getTextDimension().getWidth() > DIM_CARD.getWidth())
