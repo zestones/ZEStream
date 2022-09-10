@@ -127,6 +127,7 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 		pos = p;
 		imageName = name;
 		
+		setRolloverEnabled(false);
 		addMouseMotionListener(this);
 	}
 	

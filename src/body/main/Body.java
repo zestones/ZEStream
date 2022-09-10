@@ -55,7 +55,8 @@ public class Body implements IBody {
 	    	    
 		container.add(new Title("Parcourir les Séries", new Position(50, 60), 32, Color.white, Font.PLAIN));
 		container.add(new Title("Filtrer : ", new Position(50, 125), 14, Color.white, Font.PLAIN));
-		// TODO : Filter !!
+		
+		sortButton.setContentAreaFilled(false);
 		container.add(sortButton);
 		
 		cardButtonArray = new ArrayList<Button>();
@@ -82,8 +83,7 @@ public class Body implements IBody {
 		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));
 
 	    container.setLayout(null);
-
-		container.add(backButton);
+	    container.add(backButton);
 		
 		String title = new File(folderPath).getName();
 		

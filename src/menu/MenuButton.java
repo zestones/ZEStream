@@ -41,9 +41,11 @@ public class MenuButton extends JButton implements IGlobal, IMenu {
 		rect = null;
 		
 		setBackground(DARK_THEME);
+
+		setContentAreaFilled(false);
 		setBorderPainted(false);
 		setFocusable(false);
-		
+				
 		AffineTransform affinetransform = new AffineTransform();     
 		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);     
 		
@@ -60,6 +62,7 @@ public class MenuButton extends JButton implements IGlobal, IMenu {
 		
 		dim = new Dimension(textwidth + TEXT_WIDTH_PADDING, textheight);
 		pos = new Position(x, y);
+		
 	}
 	
 	 public void paint(Graphics g) {
