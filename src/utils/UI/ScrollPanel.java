@@ -6,7 +6,6 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import javax.swing.UIManager;
@@ -20,7 +19,7 @@ import utils.shape.Position;
 
 public class ScrollPanel extends JScrollPane implements IGlobal {
 	private static final long serialVersionUID = 1L;
-	private static final int REFRESH_HEIGHT = 42;
+	private static final int REFRESH_HEIGHT = 32;
 	
 	public Position posView = new Position(0, 0);	
 	public static int lastPosY = 0;
@@ -51,7 +50,7 @@ public class ScrollPanel extends JScrollPane implements IGlobal {
 	
 	
 	private void scrollBarEvent() { 
-		AdjustmentListener vListener = new AdjustmentListener() {
+		getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			@Override
 			public void adjustmentValueChanged(AdjustmentEvent e) {
 				 
@@ -61,10 +60,10 @@ public class ScrollPanel extends JScrollPane implements IGlobal {
 					Point p = viewport.getViewPosition();
 					if (posView.getY() < p.getY()) {
 						posView = new Position((int) p.getX(), (int) p.getY());
-						
+
 						if (posView.getY() - lastPosY >= REFRESH_HEIGHT) {
 							lastPosY = posView.getY();
-							
+						
 							if (Body.currentOnglet.equals("Biblio") && Body.depth == 0) 
 								Body.updateBodyContent(Bibliotheque.coverPathArray);							
 							else if (Body.currentOnglet.equals("Anime") && Body.depth == 0)
@@ -73,9 +72,6 @@ public class ScrollPanel extends JScrollPane implements IGlobal {
 					}
 				}
 			}
-		};
-			 
-		JScrollBar vscrollBar = getVerticalScrollBar();
-		vscrollBar.addAdjustmentListener(vListener);		 
+		});
 	} 
 }

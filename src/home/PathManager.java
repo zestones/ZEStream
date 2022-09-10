@@ -90,10 +90,10 @@ public abstract class PathManager extends Home {
 	}
 	
 	private static String getImageExtension(String folder, String path) {
-		File f = new File(path + SEPARATOR + folder + SEPARATOR + "Cover");
+		File f = new File(path + SEPARATOR + folder + SEPARATOR + COVER_FOLDER_NAME);
 		if(!f.isDirectory() && !f.isFile()) return "";
 		
-		FileSearch fsImage = new FileSearch(path + SEPARATOR + folder + SEPARATOR + "Cover", 1);
+		FileSearch fsImage = new FileSearch(path + SEPARATOR + folder + SEPARATOR + COVER_FOLDER_NAME, 1);
 		
 		for (String img : fsImage.getFileInDepth()) {
 			if (folder.equalsIgnoreCase(FileSearch.getFileName(img)))
@@ -115,7 +115,7 @@ public abstract class PathManager extends Home {
 			
 			extension = getImageExtension(file, path);
 			
-			coverPathArray.add(path + SEPARATOR + file + SEPARATOR + "Cover" + SEPARATOR + file + "." + extension);		
+			coverPathArray.add(path + SEPARATOR + file + SEPARATOR + COVER_FOLDER_NAME + SEPARATOR + file + "." + extension);		
 		}
 	}
 	
@@ -131,7 +131,7 @@ public abstract class PathManager extends Home {
 				if (f.isFile()) continue;
 					
 				extension = getImageExtension(file, path);
-				coverPathArray.add(path + SEPARATOR + file + SEPARATOR + "Cover" + SEPARATOR + file + "." + extension);					
+				coverPathArray.add(path + SEPARATOR + file + SEPARATOR + COVER_FOLDER_NAME + SEPARATOR + file + "." + extension);					
 			}				
 		}
 	}

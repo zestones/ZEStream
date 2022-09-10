@@ -107,10 +107,10 @@ public class Body implements IBody {
 	}
 	
 	private String getImageExtension(String path, String file) {
-		File f = new File(path + IGlobal.SEPARATOR + "Cover");
+		File f = new File(path + IGlobal.SEPARATOR + COVER_FOLDER_NAME);
 		if (!f.isDirectory() || f.isFile()) return "";
 		
-		FileSearch fsImage = new FileSearch(path + IGlobal.SEPARATOR + "Cover", 1);
+		FileSearch fsImage = new FileSearch(path + IGlobal.SEPARATOR + COVER_FOLDER_NAME, 1);
 				
 		for (String img : fsImage.getFileInDepth()) {
 			if (file.equalsIgnoreCase(FileSearch.getFileName(img)))
@@ -185,7 +185,7 @@ public class Body implements IBody {
 	}
 	
 	public static void updateBodyContent(ArrayList<String> coverPathArray) {
-		
+				
 		ArrayList<Button> cardButtonArray = new ArrayList<Button>();
 	    ArrayList<Button> txtButtonArray = new ArrayList<Button>();
 	    ArrayList<Button> delButtonArray = new ArrayList<Button>();
@@ -233,11 +233,10 @@ public class Body implements IBody {
 					lastDisplayedPos.setX(70);
 					lastDisplayedPos.setY(lastDisplayedPos.getY() + CARD_HEIGHT + txt.getHeight() + PADDING_CARDS_TOP);
 				}
-		
 				
 				container.add(anime);
 				container.add(txt);
-				
+								
 				indexDisplayView++;
 			}
 	
@@ -280,7 +279,7 @@ public class Body implements IBody {
 		filesArray = fs.getFileInDepth();
 		Collections.sort(filesArray);
 		
-		int limitDisplay = (filesArray.contains("Cover")) ? filesArray.size() - 2 : filesArray.size() - 1;
+		int limitDisplay = (filesArray.contains(COVER_FOLDER_NAME)) ? filesArray.size() - 2 : filesArray.size() - 1;
 		
 		int index = 0;
 		for (String file : filesArray) {
@@ -288,10 +287,10 @@ public class Body implements IBody {
 			File f = new File(path + IGlobal.SEPARATOR + file);
 			if (f.isFile()) continue;
 			
-			if (!FileSearch.getFileName(file).equalsIgnoreCase("Cover")) {
+			if (!FileSearch.getFileName(file).equalsIgnoreCase(COVER_FOLDER_NAME)) {
 				
 				String extension = getImageExtension(parentPathName, file);
-				Button anime = new Button(cardPos, parentPathName + IGlobal.SEPARATOR + "Cover" + IGlobal.SEPARATOR + file + "." + extension, FileSearch.getFileName(file), DIM_CARD);
+				Button anime = new Button(cardPos, parentPathName + IGlobal.SEPARATOR + COVER_FOLDER_NAME + IGlobal.SEPARATOR + file + "." + extension, FileSearch.getFileName(file), DIM_CARD);
 										
 				String title = FileSearch.getFileName(file);
 				Color c = DEFAULT_CARD_COLOR;
@@ -302,7 +301,7 @@ public class Body implements IBody {
 				}
 					
 				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), title, 18, c, DARK_THEME, Font.PLAIN);
-				txt.setImagePath(folderPath + IGlobal.SEPARATOR + "Cover" + IGlobal.SEPARATOR + file + "." + extension);
+				txt.setImagePath(folderPath + IGlobal.SEPARATOR + COVER_FOLDER_NAME + IGlobal.SEPARATOR + file + "." + extension);
 				
 				cardButtonArray.add(anime);
 				txtButtonArray.add(txt);
