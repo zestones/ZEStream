@@ -24,5 +24,5 @@ public interface IBody extends IMenu {
 	Button backButton = new Button(new Position(0, 25), "Retour", 22, new Dimension(180, 35), Color.white, new Color(189, 1, 1), Font.BOLD);
 
 	Color SAVED_CARD_COLOR = new Color(85, 100, 185);
-	Color DEFAULT_CARD_COLOR = Color.white;
+	Color DEFAULT_CARD_COLOR = new Color(215, 215, 215);
 }

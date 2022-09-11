@@ -91,7 +91,7 @@ public class Body implements IBody {
 		pageTitle.setUnderline(6);
 		
 		container.add(pageTitle);
-	    // TODO : add cards events ! 
+
 		cardButtonArray = new ArrayList<Button>();
 		txtButtonArray = new ArrayList<Button>();
 
@@ -124,7 +124,7 @@ public class Body implements IBody {
 	private void fillBody(ArrayList<String> coverPathArray) {
 
 		Position cardPos = new Position(70, 190);		
-		Button txt = new Button(new Position(50,50), "", 18, Color.white, Color.red, Font.PLAIN);
+		Button txt = new Button(new Position(50,50), "", 18, DEFAULT_CARD_COLOR, Color.red, Font.PLAIN);
 		
 		int index = 0;
 		for (String path : coverPathArray) {
@@ -133,7 +133,7 @@ public class Body implements IBody {
 			String fileName = FileSearch.getFileName(file.getName());
 								
 			if (cardPos.getY() >= sp.posView.getY() && cardPos.getY() <= sp.posView.getY() + FRAME_HEIGHT - MENU_HEIGHT ) {
-				Button anime = new Button(cardPos, path, fileName, DIM_CARD);		
+				Button anime = new Button(cardPos, path, fileName, DIM_CARD, true);		
 				
 				Color c = DEFAULT_CARD_COLOR;
 				for (String t : Bibliotheque.seriesTitle) {
@@ -158,7 +158,7 @@ public class Body implements IBody {
 				txtButtonArray.add(txt);
 				
 				if (currentOnglet.equals("Biblio")) {
-					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25));
+					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25), false);
 					delButtonArray.add(delete);
 					container.add(delete);				
 				}
@@ -198,7 +198,7 @@ public class Body implements IBody {
 	    ArrayList<Button> delButtonArray = new ArrayList<Button>();
 		
 		Position cardPos = new Position(lastDisplayedPos.getX(), lastDisplayedPos.getY());
-		Button txt = new Button(new Position(50,50), "", 18, Color.white, Color.red, Font.PLAIN);
+		Button txt = new Button(new Position(50,50), "", 18, DEFAULT_CARD_COLOR, Color.red, Font.PLAIN);
 			
 		int index = 0;
 		for (int i = indexDisplayView; i < coverPathArray.size(); i++) {
@@ -209,7 +209,7 @@ public class Body implements IBody {
 			String fileName = FileSearch.getFileName(file.getName());
 								
 			if (cardPos.getY() >= sp.posView.getY() && cardPos.getY() <= sp.posView.getY() + FRAME_HEIGHT - MENU_HEIGHT ) {
-				Button anime = new Button(cardPos, path, fileName, DIM_CARD);		
+				Button anime = new Button(cardPos, path, fileName, DIM_CARD, true);		
 
 				Color c = DEFAULT_CARD_COLOR;
 				for (String t : Bibliotheque.seriesTitle) {
@@ -234,7 +234,7 @@ public class Body implements IBody {
 				txtButtonArray.add(txt);
 				
 				if (currentOnglet.equals("Biblio")) {
-					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25));
+					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25), false);
 					delButtonArray.add(delete);
 					container.add(delete);				
 				}
@@ -287,7 +287,7 @@ public class Body implements IBody {
 		FileSearch fs = new FileSearch(folderPath, 1);
 		Position cardPos = new Position(70, 190);
 
-		Button txt = new Button(new Position(50,50), "", 18, Color.white, Color.red, Font.PLAIN);
+		Button txt = new Button(new Position(50,50), "", 18, DEFAULT_CARD_COLOR, Color.red, Font.PLAIN);
 						
 		ArrayList<String> filesArray = new ArrayList<>();
 		filesArray = fs.getFileInDepth();
@@ -304,7 +304,7 @@ public class Body implements IBody {
 			if (!FileSearch.getFileName(file).equalsIgnoreCase(COVER_FOLDER_NAME)) {
 				
 				String extension = getImageExtension(parentPathName, file);
-				Button anime = new Button(cardPos, parentPathName + IGlobal.SEPARATOR + COVER_FOLDER_NAME + IGlobal.SEPARATOR + file + "." + extension, FileSearch.getFileName(file), DIM_CARD);
+				Button anime = new Button(cardPos, parentPathName + IGlobal.SEPARATOR + COVER_FOLDER_NAME + IGlobal.SEPARATOR + file + "." + extension, FileSearch.getFileName(file), DIM_CARD, true);
 										
 				String title = FileSearch.getFileName(file);
 				Color c = DEFAULT_CARD_COLOR;

@@ -67,7 +67,7 @@ public class Setting implements IGlobal, ISetting {
 			Title t = new Title(f.getName(), new Position(20, 20), 22, Color.white, Font.BOLD);
 			
 			Title path = new Title(folder, new Position(55, 65), 18, Color.white, Font.PLAIN);
-			Button delete = new Button(new Position(card.getWidth() - 45, 15), "./.res/delete.png", folder, new Dimension(25, 25));
+			Button delete = new Button(new Position(card.getWidth() - 45, 15), "./.res/delete.png", folder, new Dimension(25, 25), false);
 			
 			card.add(t);
 			card.add(path);

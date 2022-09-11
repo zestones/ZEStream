@@ -16,6 +16,7 @@ import body.main.Body;
 import filter.FileSearch;
 import home.IGlobal;
 import utils.UI.Button;
+import utils.UI.Image;
 import utils.UI.Title;
 import utils.shape.Position;
 
@@ -64,7 +65,7 @@ public class Episode implements IGlobal, IEpisode {
 	    
 	    infos.setBackground(new Color(20, 66, 120));
 		
-		infos.add(new Button(new Position(25,25), coverPath, title, DIM_CARD));
+		infos.add(new Image(new Position(25,25), coverPath, DIM_CARD));
 		Title h1 = new Title(title, new Position(25 + CARD_WIDTH + 30, 25), 32, Color.white, Font.PLAIN);
 		infos.add(h1);
 				

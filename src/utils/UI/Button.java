@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
@@ -24,8 +26,10 @@ import utils.shape.Position;
 public class Button extends JButton implements MouseMotionListener, IGlobal {
 	private static final long serialVersionUID = 1L;
 	
-	private final static String defaultImgPath = "./.res/img-not-found.jpg";
-
+	private static final String defaultImgPath = "./.res/img-not-found.jpg";
+	private static final Color ICON_HOVER_COLOR = new Color(0, 0, 0, 0);
+	private static final Color ICON_UNSET_HOVER_COLOR = new Color(100, 100, 100, 50);
+	
 	private Dimension dim;
 	private Position pos;
 	private Font font;
@@ -34,6 +38,10 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 	private Color background;
 	private Color foreground;
 	private boolean hoverActive;
+	private boolean blur;
+		
+	private Color iconColor;
+	public boolean txtHoverActive = false;
 	
 	private static final int HOVER_DIFF_BACKGROUND = 60;
 	private static final int HOVER_DIFF_FOREGROUND = 125;
@@ -103,10 +111,11 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 		
 		addMouseMotionListener(this);
 	}
-	
-	public Button(Position p, String path, String name, Dimension d) {		
+		
+	public Button(Position p, String path, String name, Dimension d, boolean blur) {		
 		imgPath = path;
-				
+		this.blur = blur;
+		
 		File f = new File(path);
 		if(!f.exists() || f.isDirectory()) path = defaultImgPath;
 		
@@ -126,11 +135,19 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 	    dim = d;
 		pos = p;
 		imageName = name;
+		iconColor = ICON_UNSET_HOVER_COLOR;
 		
 		setRolloverEnabled(false);
 		addMouseMotionListener(this);
+		
+		container.addMouseMotionListener(new MouseAdapter() {
+    		public void mouseMoved(MouseEvent e) {
+            	iconColor = ICON_UNSET_HOVER_COLOR;
+            	repaint();
+    		}	
+		});
 	}
-	
+		
 	public void setIcon(String path, Dimension d) {
 		Icon icon = new ImageIcon(path);
 	    
@@ -200,7 +217,7 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 		 this.hoverActive = false;
 	 }
 	 
-	 private Color upadteHoverColor(Color c, int HOVER_DIFF) {
+	 public Color upadteHoverColor(Color c, int HOVER_DIFF) {
 		 
 		 return new Color(
 				 Math.abs(c.getRed() + HOVER_DIFF) < 255 ? 
@@ -214,16 +231,35 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 				 c.getBlue()
 			);
 	 }
+	 
+	    @Override
+		 public void paintComponent(Graphics g) {
+			 super.paintComponent(g);
+			 if (this.getIcon() != null && this.blur) {
+				 g.setColor(iconColor);
+				 g.fillRect(0, 0, (int) dim.getWidth(), (int) dim.getHeight());				 
+			 }
+	    }
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-        frame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        if (this.getIcon() != null && this.blur) {
+        	iconColor = ICON_HOVER_COLOR;
+        	repaint();
+        }
+        else if(this.getIcon() == null) {
+        	Color c = getForegroundColor();
+        	Color update = upadteHoverColor(c, 20);
+        	this.setForeground(update);
+        	txtHoverActive = true;
+        }
 	}
 	 
 }
