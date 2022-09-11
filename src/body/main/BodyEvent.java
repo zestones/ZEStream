@@ -202,7 +202,7 @@ public class BodyEvent implements IBody {
 		if (fs.getFileInDepth().size() > 0) {
 			String firstFile = fs.getFileInDepth().get(0);
 			
-			if (firstFile.equalsIgnoreCase(COVER_FOLDER_NAME)) firstFile = fs.getFileInDepth().get(1);
+			if (firstFile.equalsIgnoreCase(Body.COVER_FOLDER_NAME)) firstFile = fs.getFileInDepth().get(1);
 			File f = new File(folderPath + IGlobal.SEPARATOR + firstFile);
 			
 			if (f.isDirectory()) new Body(folderPath);

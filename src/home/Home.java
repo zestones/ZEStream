@@ -36,7 +36,12 @@ public class Home implements IGlobal {
 		frame.pack();
 		frame.setVisible(true);  
 	}
-		
+	
+	public static void clearArrays() {
+		foldersPath.clear();
+		coverPathArray.clear();
+	}
+	
 	public static void main(String[] args) {		
 		new Home();
 	}

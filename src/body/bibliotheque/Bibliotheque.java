@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import body.main.Body;
 import filter.FileSearch;
 import home.IGlobal;
 import utils.UI.PopUp;
@@ -215,7 +216,7 @@ public abstract class Bibliotheque {
 				String[] separated = data.split("\\|");
 				String folderPath = separated[0];
 				String title = separated[1];
-				String path = folderPath + IGlobal.SEPARATOR + IGlobal.COVER_FOLDER_NAME + IGlobal.SEPARATOR;
+				String path = folderPath + IGlobal.SEPARATOR + Body.COVER_FOLDER_NAME + IGlobal.SEPARATOR;
 				String ext = getImageExtension(path, title);
 
 				seriesParent.add(separated[0]);

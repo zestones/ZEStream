@@ -1,8 +1,4 @@
 /media/idriss/INTENSO/Users/Idriss/Anime/Sword Art Online|Sword Art Online|/media/idriss/INTENSO/Users/Idriss/Anime/Sword Art Online/SAO I|Sword.Art.Online.E01.MULTI.1080p.BLURAY.X264-SLEEPINGFOREST.mkv
-/media/idriss/INTENSO/Users/Idriss/Anime/Assassination Classroom|Assassination Classroom|/media/idriss/INTENSO/Users/Idriss/Anime/Assassination Classroom/Saison 1|Assassination.Classroom.S01E01.MULTi.1080p.BluRay.x264-SHiNiGAMi.mkv
-/media/idriss/INTENSO/Users/Idriss/Anime/Dororo|Dororo|/media/idriss/INTENSO/Users/Idriss/Anime/Dororo|Dororo.E02.CUSTOM.SUBFRENCH.1080p.BluRay.x264-RiPiT.mkv
-/media/idriss/INTENSO/Users/Idriss/Anime/Naruto|Naruto|/media/idriss/INTENSO/Users/Idriss/Anime/Naruto|Naruto 002 - Je suis Konohamaru!.avi
-/home/idriss/Documents/Anime/Naruto Shippuden|Naruto Shippuden|/home/idriss/Documents/Anime/Naruto Shippuden/Saison 01|Naruto.Shippuden.E003.MULTi.1080p.x265-Raton.mkv
 /media/idriss/INTENSO/Users/Idriss/Anime/86|86|/media/idriss/INTENSO/Users/Idriss/Anime/86/Saison 1|86.Eighty.Six.E01.SUBFRENCH.1080p.WEB.X264-SLEEPINGFOREST.mkv
 /media/idriss/INTENSO/Users/Idriss/Anime/Tensura|Tensura|/media/idriss/INTENSO/Users/Idriss/Anime/Tensura/Saison 2|Tensei Shitara Slime Datta-08.mkv
 /media/idriss/INTENSO/Users/Idriss/Anime/Danmachi|Danmachi|/media/idriss/INTENSO/Users/Idriss/Anime/Danmachi/Saison 1|DanMachi 12 - Show ~Malice~.mkv
@@ -12,3 +8,4 @@
 /media/idriss/INTENSO/Users/Idriss/Anime/Classroom of the elite|Classroom of the elite|/media/idriss/INTENSO/Users/Idriss/Anime/Classroom of the elite|Classroom.of.the.Elite.E04.SUBFRENCH.1080p.WEB.x264-RiPiT.mkv
 /media/idriss/INTENSO/Users/Idriss/Anime/Spice and wolf|Spice and wolf|/media/idriss/INTENSO/Users/Idriss/Anime/Spice and wolf/OAV|Spice.And.Wolf.OAV.FRENCH.720p.BluRay.x264-AMB3R.mkv
 /media/idriss/INTENSO/Users/Idriss/Anime/Clannad|Clannad|/media/idriss/INTENSO/Users/Idriss/Anime/Clannad/Saison 1|[-SeT-]_Clannad_01_VostFr_[BD_720p].mp4
+/home/idriss/Documents/Anime/Naruto Shippuden|Naruto Shippuden|/home/idriss/Documents/Anime/Naruto Shippuden/Saison 01|Naruto.Shippuden.E001.MULTi.1080p.x265-Raton.mkv

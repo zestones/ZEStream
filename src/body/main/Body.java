@@ -13,6 +13,7 @@ import body.IBody;
 import body.bibliotheque.Bibliotheque;
 import filter.FileSearch;
 import home.IGlobal;
+import settings.Setting;
 import utils.UI.Button;
 import utils.UI.Image;
 import utils.UI.ScrollPanel;
@@ -38,11 +39,13 @@ public class Body implements IBody {
 	private static int indexDisplayView = 0;
 	public static String currentOnglet; 
 	
+	public static String COVER_FOLDER_NAME = Setting.getFolderCoverName();
+	
 	public Body(ArrayList<String> coverPathArray, String onglet) {
 		currentOnglet = onglet;
-		depth = 0;
 		previousPage = "";
 		currentPath = "";
+		depth = 0;
 		
 		sp.posView = new Position(0, 0);
 		ScrollPanel.lastPosY = 0;
@@ -122,7 +125,8 @@ public class Body implements IBody {
 	
 	// fill the body main page
 	private void fillBody(ArrayList<String> coverPathArray) {
-
+		System.out.println("--> " + COVER_FOLDER_NAME);
+		
 		Position cardPos = new Position(70, 190);		
 		Button txt = new Button(new Position(50,50), "", 18, DEFAULT_CARD_COLOR, Color.red, Font.PLAIN);
 		

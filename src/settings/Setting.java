@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -17,14 +21,20 @@ import utils.UI.Title;
 import utils.shape.Position;
 
 public class Setting implements IGlobal, ISetting {
+	private static final Dimension PATH_CARD_DIM = new Dimension(FRAME_WIDTH - 222, 110);
 	
     private ArrayList<Button> deleteButtonArray;
     private ArrayList<JPanel> cardButtonArray;
     
     protected static JPanel subContainer = new JPanel();
-    
-    private static final Dimension PATH_CARD_DIM = new Dimension(FRAME_WIDTH - 222, 110);
-    
+	
+	protected static Button folderCoverBtn;
+	protected static Button modifyFolderCoverName;
+	
+	protected static String folderCoverName;
+	
+	private static final String FILE_COVER_NAME = "./.res/cover_name.txt";
+	    
 	public Setting() {
 		container.setBackground(DARK_THEME);
 		container.setBorder(new MatteBorder(2, 0, 0, 0, new Color(84, 84, 84)));	
@@ -44,7 +54,6 @@ public class Setting implements IGlobal, ISetting {
 		this.deleteButtonArray = new ArrayList<Button>();
 
 		this.fillBody();
-		
 		new SettingEvent(deleteButtonArray, cardButtonArray);
 
 		sp.updateScrollPanelStyle();
@@ -82,7 +91,55 @@ public class Setting implements IGlobal, ISetting {
 			subContainer.add(card);
 		}
 		
-	    container.setPreferredSize(new Dimension(FRAME_WIDTH, subContainer.getHeight() + subContainer.getY()));
-	}
+		p.setX(55);
+		p.setY(subContainer.getHeight() + subContainer.getY());
 
+		container.add(new Title("Nom du dossier contenant les images", p, 28, Color.white, Font.PLAIN));
+		
+		p.setX(65);
+		p.setY(p.getY() + 65);
+		
+		folderCoverName = getFolderCoverName();
+		
+		folderCoverBtn = new Button(new Position(p.getX(), p.getY()), folderCoverName, 24, new Dimension(200, 37), Color.white, DARK_THEME, Font.PLAIN);
+		folderCoverBtn.setBorderPainted(true);
+		folderCoverBtn.setContentAreaFilled(false);
+		
+		container.add(folderCoverBtn);
+				
+		p.setX(p.getX() + folderCoverBtn.getWidth() + 10);
+		modifyFolderCoverName = new Button(p, "./.res/modify.png", "path", new Dimension(folderCoverBtn.getHeight(), folderCoverBtn.getHeight()), false);
+		modifyFolderCoverName.setContentAreaFilled(false);
+		container.add(modifyFolderCoverName);
+				
+	    container.setPreferredSize(new Dimension(FRAME_WIDTH, p.getY() + PADDING_CARDS_TOP * 2));
+	}
+	
+	public static String getFolderCoverName() {
+		String name = "";
+		try {
+			File myObj = new File(FILE_COVER_NAME);
+			Scanner myReader = new Scanner(myObj);
+			while (myReader.hasNextLine()) {
+				name = myReader.nextLine();
+			}
+			myReader.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+		
+		return name;
+	}
+	
+	protected static void setFolderCoverName(String name) {
+		try {
+			FileWriter myWriter = new FileWriter(FILE_COVER_NAME, false);
+			myWriter.write(name);
+			myWriter.close();
+		} catch (IOException ex) {
+			System.out.println("An error occurred.");
+			ex.printStackTrace();
+		}
+	}
 }

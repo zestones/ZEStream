@@ -34,6 +34,4 @@ public interface IGlobal {
 	int CARD_WIDTH = 175;
 	int CARD_HEIGHT = 225;
 	Dimension DIM_CARD = new Dimension(CARD_WIDTH, CARD_HEIGHT);
-
-	String COVER_FOLDER_NAME = "Cover";
 }

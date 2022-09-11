@@ -66,6 +66,7 @@ public class MenuEvent implements IGlobal, IMenu {
 								
 				param.setActiveButton();
 				unsetActiveButton(param.getText());
+				Body.currentOnglet = "Param";
 				
 				new Setting();
 				

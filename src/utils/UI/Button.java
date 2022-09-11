@@ -127,6 +127,8 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 	    icon = new ImageIcon(newimg); 
 	    setIcon(icon);
 	    
+	    setBackground(DARK_THEME);
+	    
 	    setVerticalTextPosition(SwingConstants.BOTTOM);
 	    setHorizontalTextPosition(SwingConstants.CENTER);
 	    
@@ -138,6 +140,8 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 		iconColor = ICON_UNSET_HOVER_COLOR;
 		
 		setRolloverEnabled(false);
+		setBorderPainted(false);
+		
 		addMouseMotionListener(this);
 		
 		container.addMouseMotionListener(new MouseAdapter() {
@@ -175,6 +179,7 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 	 public String getImagePath() { return this.imgPath; }
 	 public void setImagePath(String p) { this.imgPath = p; }
 	 public String getName() { return this.imageName; }
+	 public void setName(String txt) { this.imageName = txt; }
 
 	 public Color getForegroundColor() { return this.foreground; }
 	 public Color getBackgroundColor() { return this.background; }

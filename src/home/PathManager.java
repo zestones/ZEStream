@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import body.main.Body;
 import filter.FileSearch;
 import utils.UI.PopUp;
 
@@ -90,10 +91,10 @@ public abstract class PathManager extends Home {
 	}
 	
 	private static String getImageExtension(String folder, String path) {
-		File f = new File(path + SEPARATOR + folder + SEPARATOR + COVER_FOLDER_NAME);
+		File f = new File(path + SEPARATOR + folder + SEPARATOR + Body.COVER_FOLDER_NAME);
 		if(!f.isDirectory() && !f.isFile()) return "";
 		
-		FileSearch fsImage = new FileSearch(path + SEPARATOR + folder + SEPARATOR + COVER_FOLDER_NAME, 1);
+		FileSearch fsImage = new FileSearch(path + SEPARATOR + folder + SEPARATOR + Body.COVER_FOLDER_NAME, 1);
 		
 		for (String img : fsImage.getFileInDepth()) {
 			if (folder.equalsIgnoreCase(FileSearch.getFileName(img)))
@@ -115,7 +116,7 @@ public abstract class PathManager extends Home {
 			
 			extension = getImageExtension(file, path);
 			
-			coverPathArray.add(path + SEPARATOR + file + SEPARATOR + COVER_FOLDER_NAME + SEPARATOR + file + "." + extension);		
+			coverPathArray.add(path + SEPARATOR + file + SEPARATOR + Body.COVER_FOLDER_NAME + SEPARATOR + file + "." + extension);		
 		}
 	}
 	
@@ -131,7 +132,7 @@ public abstract class PathManager extends Home {
 				if (f.isFile()) continue;
 					
 				extension = getImageExtension(file, path);
-				coverPathArray.add(path + SEPARATOR + file + SEPARATOR + COVER_FOLDER_NAME + SEPARATOR + file + "." + extension);					
+				coverPathArray.add(path + SEPARATOR + file + SEPARATOR + Body.COVER_FOLDER_NAME + SEPARATOR + file + "." + extension);					
 			}				
 		}
 	}
