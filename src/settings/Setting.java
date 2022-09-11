@@ -96,7 +96,7 @@ public class Setting implements IGlobal, ISetting {
 
 		container.add(new Title("Nom du dossier contenant les images", p, 28, Color.white, Font.PLAIN));
 		
-		p.setX(65);
+		p.setX(80);
 		p.setY(p.getY() + 65);
 		
 		folderCoverName = getFolderCoverName();

@@ -125,7 +125,6 @@ public class Body implements IBody {
 	
 	// fill the body main page
 	private void fillBody(ArrayList<String> coverPathArray) {
-		System.out.println("--> " + COVER_FOLDER_NAME);
 		
 		Position cardPos = new Position(70, 190);		
 		Button txt = new Button(new Position(50,50), "", 18, DEFAULT_CARD_COLOR, Color.red, Font.PLAIN);

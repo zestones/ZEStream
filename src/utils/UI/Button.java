@@ -26,7 +26,6 @@ import utils.shape.Position;
 public class Button extends JButton implements MouseMotionListener, IGlobal {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String defaultImgPath = "./.res/img-not-found.jpg";
 	private static final Color ICON_HOVER_COLOR = new Color(0, 0, 0, 0);
 	private static final Color ICON_UNSET_HOVER_COLOR = new Color(100, 100, 100, 50);
 	
@@ -117,7 +116,7 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 		this.blur = blur;
 		
 		File f = new File(path);
-		if(!f.exists() || f.isDirectory()) path = defaultImgPath;
+		if(!f.exists() || f.isDirectory()) path = IMG_NOT_FOUND;
 		
 		Icon icon = new ImageIcon(path);
 	    

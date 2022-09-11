@@ -65,7 +65,6 @@ public class Episode implements IGlobal, IEpisode {
 	    
 	    infos.setBackground(new Color(20, 66, 120));
 		
-	    System.out.println("===>  " + coverPath);
 		infos.add(new Image(new Position(25,25), coverPath, DIM_CARD));
 		Title h1 = new Title(title, new Position(25 + CARD_WIDTH + 30, 25), 32, Color.white, Font.PLAIN);
 		infos.add(h1);
