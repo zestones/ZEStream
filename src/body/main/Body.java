@@ -317,7 +317,11 @@ public class Body implements IBody {
 					}					
 				}
 					
-				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), title, 18, c, DARK_THEME, Font.PLAIN);
+				txt = new Button(new Position(cardPos.getX() - 20, cardPos.getY() + (int) anime.getDimension().getHeight() + 10), file, 18, c, DARK_THEME, Font.PLAIN);
+				
+				if(txt.getTextDimension().getWidth() > DIM_CARD.getWidth())
+					txt = adjustTextButton(file, anime, cardPos);
+				
 				txt.setImagePath(folderPath + IGlobal.SEPARATOR + COVER_FOLDER_NAME + IGlobal.SEPARATOR + file + "." + extension);
 				
 				cardButtonArray.add(anime);
