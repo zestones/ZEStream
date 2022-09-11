@@ -188,12 +188,11 @@ public class BodyEvent implements IBody {
 	}
 	
 	private void initBodyFirstDepth(ArrayList<Button> buttonArray, int index) {
-		String separator = "/";
 		
-		int sepPos = buttonArray.get(index).getImagePath().lastIndexOf(separator);
+		int sepPos = buttonArray.get(index).getImagePath().lastIndexOf(IGlobal.SEPARATOR);
 		String p = buttonArray.get(index).getImagePath().substring(0, sepPos);
 		
-		sepPos = p.lastIndexOf(separator);
+		sepPos = p.lastIndexOf(IGlobal.SEPARATOR);
 		String folderPath = p.substring(0, sepPos);
 		
 		clearBody();

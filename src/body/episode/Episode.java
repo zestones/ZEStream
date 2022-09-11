@@ -78,7 +78,13 @@ public class Episode implements IGlobal, IEpisode {
 		
 		// EPISODE
 		infos.add(new Title("EPISODES", new Position(h1.getX() + 30, h1.getHeight() + h1.getY() + 65), 14, Color.white, Font.BOLD));
-		infos.add(new Title(Integer.toString(fs.getFileInDepth().size()), new Position(h1.getX() + 150, h1.getHeight() + h1.getY() + 65), 14, Color.white, Font.PLAIN));
+		
+		int numberEp;
+		if (Body.depth == 1 && new File(Body.parentPathName + SEPARATOR + folderName + Body.COVER_FOLDER_NAME).exists())
+			numberEp = fs.getFileInDepth().size() - 1;
+		else numberEp = fs.getFileInDepth().size();
+		
+		infos.add(new Title(Integer.toString(numberEp), new Position(h1.getX() + 150, h1.getHeight() + h1.getY() + 65), 14, Color.white, Font.PLAIN));
 		
 		// DUREE
 		infos.add(new Title("DURÉE", new Position(h1.getX() + 30, h1.getHeight() + h1.getY() + 100), 14, Color.white, Font.BOLD));
