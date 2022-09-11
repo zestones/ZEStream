@@ -68,7 +68,8 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 		Dimension d = getTextDimension();
 		
 		setBounds(p.getX(), p.getY(), (int) d.getWidth() + 50, (int) d.getHeight());
-   
+		
+		setContentAreaFilled(false);
 		setBorderPainted(false);
 		setFocusable(false); 	
 		
@@ -92,6 +93,7 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 		this.font = font;
 		
 		setBackground(background);
+
 		setBorderPainted(false);
 		setFocusable(false);
 		
@@ -101,10 +103,7 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 	    setForeground(foreground);
 			
 		setBounds(p.getX(), p.getY(), (int) d.getWidth(), (int) d.getHeight());
-   
-		setBorderPainted(false);
-		setFocusable(false); 	
-		
+   		
 		dim = d;
 		pos = p;
 		
