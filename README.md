@@ -1,11 +1,11 @@
 # ZEStream
 ***
 
-ZEStream est un micro-logiciel proposant une interface graphique permettant de visionnée et de gérer ses  séries, Films et vidéos.
-L'idée est simple plutôt que de parcourir ses dizaines voir centaines de dossiers et fichiers vidéos à l'aide du navigateurs de fichiers proposée par son SE (windows/linux) autant le faire sur un interface plus agréable.
+ZEStream est un micrologiciel proposant une interface graphique permettant de visionner et de gérer ses  séries, Films et vidéos.
 
+L'idée est simple plutôt que de parcourir ses dizaines voir centaines de dossiers et fichiers vidéo à l'aide du navigateur de fichiers proposée par son SE (Windows/Linux) autant le faire sur une interface plus agréable.
 
-<img src="doc/home.png"
+<img src="doc/img/home.png"
     alt="Image représentant l'onglet Séries."
     style="text-align: center;" />
 </br>
@@ -13,18 +13,20 @@ L'idée est simple plutôt que de parcourir ses dizaines voir centaines de dossi
 ## Mise en place
 
 ### Importer ses Vidéos
-Il est nécéssaire dans un premier temps de spécifier le ou les emplacements de vos dossier contenant vos contenu vidéo.
-Pour cela il faut ce rendre dans l'onglet Paramètres et ajouter les dossiers voulu en cliquant sur **+** 
-Ainsi, vous pourrez centraliser vos fichiers vidéos sur une seul et même application.
 
-<img src="doc/Setting.png"
+Il est nécessaire dans un premier temps de spécifier le ou les emplacements de vos dossiers contenant vos contenus vidéo.
+Pour cela il faut se rendre dans l'onglet Paramètres et ajouter les dossiers voulus en cliquant sur le '+'. 
+
+Ainsi, vous pourrez centraliser vos fichiers vidéo sur une seule et même application.
+
+<img src="doc/img/Setting.png"
     alt="Image représentant l'onglet Paramètre."
     style="text-align: center;" />
 </br>
 
-Pour que vos fichiers et dossiers soit lu et afficher correctement, il est nécéssaire de respecter une architecture simple. 
+Pour que vos fichiers et dossiers soient lus et afficher correctement, il est nécessaire de respecter une architecture simple. 
 
-Prenons ici par example mon dossier Movie visible sur l'image. Il devra être organisé de la façon suivante: 
+Prenons ici par exemple mon dossier Movie visible sur l'image. Il devra être organisé de la façon suivante: 
 
 ```
 Movie
@@ -57,19 +59,18 @@ Movie
 
 ```
 
-Mon dossier Movie contiendra donc les dossiers de mes films. Et dans chaque dossier de films, on pourra retrouver un dossier "Cover" qui contiendra les images des dossiers (Attention : les images doivent avoir **le même** nom que les dossiers pour que celle-ci soit affiché).
-Ainsi on pourra créer une multitude de sous dossier.
+Mon dossier Movie contiendra donc les dossiers de mes films. Et dans chaque dossier de films, on pourra retrouver un dossier "Cover" qui contiendra les images des dossiers (Attention : les images doivent avoir **le même** nom que les dossiers pour que celle-ci soit affichée).
+Ainsi on pourra créer une multitude de sous dossiers.
 
 > **ATTENTION** 
-> * Si les vidéos sont à la racine du dossier (cf: Movie > Example 01) alors **UNIQUEMENT** des fichiers (vidéos) sont attendu. Le seul dossier accépté est celui contenant les images (ici le dossier *Cover*) 
-> * Si vous choisisser d'organiser les vidéos dans des sous dossiers (cf: Movie > Example 02) alors **UNIQUEMENT** des dossiers sont attendu.  
+> * Si les vidéos sont à la racine du dossier (cf: Movie > Example 01) alors **UNIQUEMENT** des fichiers (vidéos) sont attendus. Le seul dossier accepté est celui contenant les images (ici le dossier *Cover*) 
+> * Si vous choisisser d'organiser les vidéos dans des sous-dossiers (cf: Movie > Example 02) alors **UNIQUEMENT** des dossiers sont attendus.  
 > **NE PAS MELANGER FICHIERS ET DOSSIERS DANS UN MÊME SOUS DOSSIER**  
 
-Pour résumer: 
-Deux solution s'offrent a nous: 
+Pour résumer vous avez deux possibilités: 
 
-1. Movie > Movie Example 01 > [fichies vidéos] + [Dossier Img]
-2. Movie > Movie Example 02 > sous Dossier + [Dossier Img] > [fichiers videos]
+1. Movie > Movie Example 01 > [fichiers vidéos] + [Dossier Img]
+2. Movie > Movie Example 02 > sous-dossier + [Dossier Img] > [fichiers videos]
 
 ### L'ajout de Cover
 
@@ -78,13 +79,28 @@ Comme vous l'avez compris il est possible d'ajouter des images pour chaque dossi
 Le dossier contenant les images des dossiers est nommée par défaut **"Cover"**. Il est également possible de changer ce nom s'il ne vous convient pas dans les paramètres.
 
 > **NOTE** \
-> Si aucun dossier "Cover" n'est créer et aucune image n'est ajouter alors une image par defaut sera ajouter. Mais cela ne gène en rien le bon fonctionement de l'application. 
+> Si aucun dossier "Cover" n'est créer et aucune image n'est ajoutée alors une image par défaut sera ajouté. Mais cela ne gène en rien le bon fonctionnement de l'application. 
 
 ## La Bibliotheque
 
-Il va être possible d'ajouter des élements à la bibliothèque et d'enregistrer l'avancement des Séries/Film que vous regarder.
+Il va être possible d'ajouter des éléments à la bibliothèque et d'enregistrer l'avancement des Séries/Films que vous regarder.
+
+<img src="doc/video/bookmark.gif" 
+    style="text-align:center;" />
+
+En effectuant un clique droit sur un fichier vidéo, on l'ajoute automatiquement à la bibliothèque. Le fichier sera alors affiché en rouge. 
+
+De plus, le chemin jusqu'au fichier sera mis en évidence à l'aide d'une couleur différente pour les titres (en l'occurrence bleue) sous les images des dossiers.
+
+
+Une icône s'affichera également à côté des images dans l'onglet *Séries* lorsque la série a déjà été ajouté à la bibliothèque.
+
+<img src="doc/img/biblio.png" 
+    style="text-align:center;" />
+
+Une fois une série ou un Film terminé il pourra être retiré de la bibliothèque en cliquant sur la petite icône supprimer.
 
 
 ## Précision Générale
 * Le dossier contenant les images des dossiers est nommée par défaut **"Cover"**
-* Les vidéos sont éxecuter en fonction du lecteur vidéo définit par défaut sur votre machine. Il est possible qu'en fonction de l'extension de votre fichier différent lecteur soit lancé. 
+* Les vidéos sont exécutées en fonction du lecteur vidéo défini par défaut sur votre machine. Il est possible qu'en fonction de l'extension de votre fichier différent lecteur soit lancé. 
