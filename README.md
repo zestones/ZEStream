@@ -101,7 +101,7 @@ Une fois une série ou un Film terminé il pourra être retiré de la bibliothè
 
 
 ## Précision Générale
-* Le dossier contenant les images des dossiers est nommée par défaut **"Cover"**
+* Le dossier contenant les images est nommée par défaut **"Cover"**
 * Les vidéos sont exécutées en fonction du lecteur vidéo défini par défaut sur votre machine. Il est possible qu'en fonction de l'extension de votre fichier différent lecteur soit lancé. 
 
 ## Execution
