@@ -92,8 +92,6 @@ Il va être possible d'ajouter des éléments à la bibliothèque et d'enregistr
 En effectuant un clique droit sur un fichier vidéo, on l'ajoute automatiquement à la bibliothèque. Le fichier sera alors affiché en rouge. 
 
 De plus, le chemin jusqu'au fichier sera mis en évidence à l'aide d'une couleur différente pour les titres (en l'occurrence bleue) sous les images des dossiers.
-
-
 Une icône s'affichera également à côté des images dans l'onglet *Séries* lorsque la série a déjà été ajouté à la bibliothèque.
 
 <img src="doc/img/biblio.png" 
@@ -105,3 +103,5 @@ Une fois une série ou un Film terminé il pourra être retiré de la bibliothè
 ## Précision Générale
 * Le dossier contenant les images des dossiers est nommée par défaut **"Cover"**
 * Les vidéos sont exécutées en fonction du lecteur vidéo défini par défaut sur votre machine. Il est possible qu'en fonction de l'extension de votre fichier différent lecteur soit lancé. 
+
+## Execution
