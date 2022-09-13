@@ -65,6 +65,7 @@ Ainsi on pourra créer une multitude de sous dossiers.
 > **ATTENTION** 
 > * Si les vidéos sont à la racine du dossier (cf: Movie > Example 01) alors **UNIQUEMENT** des fichiers (vidéos) sont attendus. Le seul dossier accepté est celui contenant les images (ici le dossier *Cover*) 
 > * Si vous choisisser d'organiser les vidéos dans des sous-dossiers (cf: Movie > Example 02) alors **UNIQUEMENT** des dossiers sont attendus.  
+>
 > **NE PAS MELANGER FICHIERS ET DOSSIERS DANS UN MÊME SOUS DOSSIER**  
 
 Pour résumer vous avez deux possibilités: 
