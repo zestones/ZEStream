@@ -72,11 +72,8 @@ public abstract class Bibliotheque {
 		/**
 		 * Parent path | title | path to ep | episode
 		 */
-	
-		System.out.println(seriesTitle);
-		System.out.println(index);
-		clearFile();
 		
+		clearFile();
 		for (int i = 0; i < seriesTitle.size(); i++) {
 			
 			String parent = seriesParent.get(i);

@@ -11,7 +11,7 @@ import utils.OsUtils;
 import utils.UI.ScrollPanel;
 
 public interface IGlobal {
-	String SEPARATOR = (OsUtils.isWindows()) ? "\\" : "/";
+	String SEPARATOR = (OsUtils.isWindows()) ? "\\\\" : "/";
 
 	// Properties of the frame
 	JFrame frame = new JFrame("ZEStream");

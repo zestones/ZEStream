@@ -14,6 +14,7 @@ import body.bibliotheque.Bibliotheque;
 import filter.FileSearch;
 import home.IGlobal;
 import settings.Setting;
+import utils.OsUtils;
 import utils.UI.Button;
 import utils.UI.Image;
 import utils.UI.ScrollPanel;
@@ -276,12 +277,22 @@ public class Body implements IBody {
 		
 		String parent = new File(parentPathName).getName();
 		String[] coloredPath = null;
+		
 		for (String t : Bibliotheque.seriesTitle) {
 			if(t.equals(parent)) {
-
 				String titlePath = Bibliotheque.seriesPath.get(Bibliotheque.seriesTitle.indexOf(parent));
-				String[] separated = titlePath.split(parentPathName);
-				coloredPath = separated[1].split(IGlobal.SEPARATOR);
+				
+				if(OsUtils.isWindows()) {
+					titlePath = titlePath.replace("\\", IGlobal.SEPARATOR);
+					parentPathName = parentPathName.replace("\\", IGlobal.SEPARATOR);
+
+					String[] separated = titlePath.split(parentPathName);
+					coloredPath = separated[0].split(IGlobal.SEPARATOR);
+				}
+				else {
+					String[] separated = titlePath.split(parentPathName);
+					coloredPath = separated[1].split(IGlobal.SEPARATOR);
+				}
 			}
 		}
 		
