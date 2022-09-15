@@ -1,10 +1,7 @@
 package body.bibliotheque;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,14 +33,14 @@ public abstract class Bibliotheque {
 			if(confirm.getAnswer() == JOptionPane.YES_OPTION) {
 				
 				updateBibliotheque(parent);
-				saveFolderPath(parent, ep, path);
+				saveNewEntry(parent, ep, path);
 				getBiblioCoverFolders();
 
 				success = true;
 			}
 		}
 		else {
-			saveFolderPath(parent, ep, path);
+			saveNewEntry(parent, ep, path);
 			new PopUp("Serie ajouté à la bibliotheque", "Information", JOptionPane.INFORMATION_MESSAGE);
 			success = true;
 		}
@@ -55,98 +52,53 @@ public abstract class Bibliotheque {
 	
 	private static void updateBibliotheque(String parent) {
 		String title = new File(parent).getName();
-		int index = seriesTitle.indexOf(title);
-		
-
-		File inputFile = new File(FILE);
-		File tempFile = new File("./.res/tmp.txt");
-
-		BufferedReader reader = null;
-		BufferedWriter writer = null;
+		removeElementBibliotheque(title);
+	}
+	
+	private static void clearFile() {
 		try {
-			reader = new BufferedReader(new FileReader(inputFile));
-			writer = new BufferedWriter(new FileWriter(tempFile));
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FileWriter myWriter = new FileWriter(FILE, false);
+			myWriter.write("");
+			myWriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		String lineToRemove = parent + "|" + title + "|" + seriesPath.get(index) + "|" + seriesEpisode.get(index);
-		String currentLine;
-
-		try {
-			while((currentLine = reader.readLine()) != null) {
-			    // trim newline when comparing with lineToRemove
-			    String trimmedLine = currentLine.trim();
-			    if(trimmedLine.equals(lineToRemove)) continue;
-			    writer.write(currentLine + System.getProperty("line.separator"));
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			writer.close();
-			reader.close(); 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		tempFile.renameTo(inputFile);
 	}
 	
 	public static void removeElementBibliotheque(String title) {
 		int index = seriesTitle.indexOf(title);
 		
-		String parent = seriesParent.get(index);
-		String path = seriesPath.get(index);
-		String episode = seriesEpisode.get(index);
+		/**
+		 * Parent path | title | path to ep | episode
+		 */
+	
+		System.out.println(seriesTitle);
+		System.out.println(index);
+		clearFile();
 		
-		File inputFile = new File(FILE);
-		File tempFile = new File("./.res/tmp.txt");
+		for (int i = 0; i < seriesTitle.size(); i++) {
+			
+			String parent = seriesParent.get(i);
+			String path = seriesPath.get(i);
+			String episode = seriesEpisode.get(i);
+			String t = new File(parent).getName();
 
-		BufferedReader reader = null;
-		BufferedWriter writer = null;
-		try {
-			reader = new BufferedReader(new FileReader(inputFile));
-			writer = new BufferedWriter(new FileWriter(tempFile));
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String lineToRemove = parent + "|" + title + "|" + path + "|" + episode;
-		String currentLine;
-
-		try {
-			while((currentLine = reader.readLine()) != null) {
-			    // trim newline when comparing with lineToRemove
-			    String trimmedLine = currentLine.trim();
-			    if(trimmedLine.equals(lineToRemove)) continue;
-			    writer.write(currentLine + System.getProperty("line.separator"));
+			String save = parent + "|" + t + "|" + path + "|" + episode;
+			File file = new File(save);
+			
+			if(!file.isDirectory()) {
+				if(i == index) continue;
+				try {
+					FileWriter myWriter = new FileWriter(FILE, true);
+					myWriter.write(file + "\n");
+					myWriter.close();
+				} catch (IOException ex) {
+					System.out.println("An error occurred.");
+					ex.printStackTrace();
+				}
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		try {
-			writer.close();
-			reader.close(); 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		tempFile.renameTo(inputFile);
 		
 		getBiblioCoverFolders();
 	}
@@ -165,7 +117,7 @@ public abstract class Bibliotheque {
 		return "";
 	}
 	
-	private static void saveFolderPath(String parent, String ep, String path) {
+	private static void saveNewEntry(String parent, String ep, String path) {
 		String title = new File(parent).getName();
 		
 		/**
