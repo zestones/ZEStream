@@ -161,7 +161,7 @@ public class Body implements IBody {
 				txtButtonArray.add(txt);
 				
 				if (currentOnglet.equals("Biblio")) {
-					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25), false);
+					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), DELETE_ICON, fileName, new Dimension(25, 25), false);
 					delButtonArray.add(delete);
 					container.add(delete);				
 				}
@@ -237,7 +237,7 @@ public class Body implements IBody {
 				txtButtonArray.add(txt);
 				
 				if (currentOnglet.equals("Biblio")) {
-					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/delete.png", fileName, new Dimension(25, 25), false);
+					Button delete = new Button(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), DELETE_ICON, fileName, new Dimension(25, 25), false);
 					delButtonArray.add(delete);
 					container.add(delete);				
 				}

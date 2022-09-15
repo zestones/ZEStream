@@ -35,7 +35,7 @@ public class Episode implements IGlobal, IEpisode {
 	
 		if (Body.depth == 1) {
 			Body.currentPath += folderName;
-			currentFolderPath = Body.currentPath ;	
+			currentFolderPath = Body.currentPath;	
 			Body.parentPathName = currentFolderPath;		
 		}
 		else {

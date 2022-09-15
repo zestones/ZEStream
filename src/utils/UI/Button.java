@@ -172,6 +172,10 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 	}
 		 
 	 public Position getPosition() { return this.pos; }
+	 public void setPosition(Position p) { 
+		 this.pos.setX(p.getX());
+		 this.pos.setY(p.getY());
+	 } 
 	 public Dimension getDimension() { return this.dim; }
 	 
 	 public String getImagePath() { return this.imgPath; }

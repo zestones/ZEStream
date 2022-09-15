@@ -9,4 +9,7 @@ public interface IEpisode {
  
     Color EPISODE_MARKED_FOREGROUND = new Color(80, 80, 85);
     Color EPISODE_MARKED_BACKGROUND = Color.red;
+    
+    String BOOKMARK_ICON = "./.res/bookmark-episode.png";
+    String REMOVE_ICON = "./.res/remove.png";
 }
