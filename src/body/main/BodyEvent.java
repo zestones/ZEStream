@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import body.IBody;
 import body.bibliotheque.Bibliotheque;
 import body.episode.Episode;
@@ -15,6 +17,7 @@ import filter.FileSearch;
 import home.Home;
 import home.IGlobal;
 import utils.UI.Button;
+import utils.UI.PopUp;
 
 public class BodyEvent implements IBody {
 	private static boolean OK = false;
@@ -92,14 +95,17 @@ public class BodyEvent implements IBody {
 					for(int j = 0; j < delButtonArray.size(); j++) {
 											
 						if(e.getSource() == delButtonArray.get(j)) {								
-							clearBody();							
-
-							Bibliotheque.removeElementBibliotheque(delButtonArray.get(j).getName());
-							new Body(Bibliotheque.coverPathArray, Body.currentOnglet);
-					
-							frame.repaint();
-
-							break;
+							
+							PopUp confirm = new PopUp("Etes-vous sûres de vouloir supprimer cette série ?", "Selectioner une option", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+							if(confirm.getAnswer() == JOptionPane.YES_OPTION) {		
+								clearBody();							
+								
+								Bibliotheque.removeElementBibliotheque(delButtonArray.get(j).getName());
+								new Body(Bibliotheque.coverPathArray, Body.currentOnglet);
+								
+								frame.repaint();
+								break;
+							}	
 						}
 					}
 			}});
