@@ -283,11 +283,11 @@ public class Body implements IBody {
 				String titlePath = Bibliotheque.seriesPath.get(Bibliotheque.seriesTitle.indexOf(parent));
 				
 				if(OsUtils.isWindows()) {
-					titlePath = titlePath.replace("\\", IGlobal.SEPARATOR);
-					parentPathName = parentPathName.replace("\\", IGlobal.SEPARATOR);
+					titlePath = titlePath.replace(IGlobal.SEPARATOR, IGlobal.SEPARATOR + IGlobal.SEPARATOR);
+					parentPathName = parentPathName.replace(IGlobal.SEPARATOR, IGlobal.SEPARATOR + IGlobal.SEPARATOR);
 
 					String[] separated = titlePath.split(parentPathName);
-					coloredPath = separated[0].split(IGlobal.SEPARATOR);
+					coloredPath = separated[0].split(IGlobal.SEPARATOR + IGlobal.SEPARATOR);
 				}
 				else {
 					String[] separated = titlePath.split(parentPathName);
