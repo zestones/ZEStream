@@ -19,12 +19,12 @@ public interface IBody extends IMenu {
 	String sortDescend = "De Z à A";
 	
 	// sort Button
-	Button sortButton = new Button(new Position(105, 133), sortAscend, 14, new Color(12, 124, 255), DARK_THEME, Font.PLAIN);
+	Button sortButton = new Button(new Position(105, 133), sortAscend, 14, new Dimension(110, 18), new Color(12, 124, 255), DARK_THEME, Font.PLAIN);
 	// return button
 	Button backButton = new Button(new Position(0, 25), "Retour", 22, new Dimension(180, 35), Color.white, new Color(189, 1, 1), Font.BOLD);
 
 	Color SAVED_CARD_COLOR = new Color(85, 100, 185);
 	Color DEFAULT_CARD_COLOR = new Color(215, 215, 215);
 	
-	String DELETE_ICON = "./.res/delete.png";
+	String BOOKMARK_ICON = "./res/bookmark.png";
 }

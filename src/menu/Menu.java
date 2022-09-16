@@ -3,9 +3,8 @@ package menu;
 import java.awt.BorderLayout;
 
 import filter.SearchBar;
-import home.IGlobal;
 
-public class Menu implements IGlobal, IMenu {
+public class Menu implements IMenu {
 
 	public Menu() {
 				

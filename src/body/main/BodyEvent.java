@@ -26,7 +26,7 @@ public class BodyEvent implements IBody {
 		cardEvent(cardButtonArray);
 		txtEvent(txtButtonArray);
 		
-		if (Body.currentOnglet.equals("Biblio") && Body.depth < 1) delEvent(delButtonArray);
+		if (Body.currentTab.equals(LIBRARY_TAB) && Body.depth < 1) delEvent(delButtonArray);
 		if (!OK) backButton();
 	}
 	
@@ -42,10 +42,10 @@ public class BodyEvent implements IBody {
 				String folderPath = Body.currentPath.substring(0, sepPos);
 				
 				if (Body.depth == 1) 
-					if (Body.currentOnglet.equals("Anime")) 
-						new Body(Home.coverPathArray, Body.currentOnglet);
+					if (Body.currentTab.equals(SERIES_TAB)) 
+						new Body(Home.coverPathArray, Body.currentTab);
 					else 
-						new Body(Bibliotheque.coverPathArray, Body.currentOnglet);
+						new Body(Bibliotheque.coverPathArray, Body.currentTab);
 				else {	
 					new Body(folderPath);
 					Body.depth -= 2;
@@ -58,34 +58,37 @@ public class BodyEvent implements IBody {
 		sortButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> tmp = new ArrayList<String>();
-				if (Body.currentOnglet.equals("Anime")) {
-					for (int i = Home.coverPathArray.size(); i != 0; i--)
-						tmp.add(Home.coverPathArray.get(i - 1));					
-				}
-				else {
-					for (int i = Bibliotheque.coverPathArray.size(); i != 0; i--)
-						tmp.add(Bibliotheque.coverPathArray.get(i - 1));		
-				}
-			
-				if (sortAscend == sortButton.getText())			
-					sortButton.setText(sortDescend);
+
+				if (Body.currentTab.equals(SERIES_TAB)) tmp = inverseArrayOrder(Home.coverPathArray);
+				else tmp = inverseArrayOrder(Bibliotheque.coverPathArray);
+				
+				if (sortAscend == sortButton.getText()) sortButton.setText(sortDescend);
 				else sortButton.setText(sortAscend);
 				
 				container.removeAll();
 				container.revalidate();
 				
-				if (Body.currentOnglet.equals("Anime")) {
+				if (Body.currentTab.equals(SERIES_TAB)) {
 					Home.coverPathArray = tmp;
-					new Body(Home.coverPathArray, "Anime");
+					new Body(Home.coverPathArray, SERIES_TAB);
 				}
 				else {
 					Bibliotheque.coverPathArray = tmp;
-					new Body(Bibliotheque.coverPathArray, "Biblio");
+					new Body(Bibliotheque.coverPathArray, LIBRARY_TAB);
 				}
 				
 				frame.repaint();					
 			}
 		});
+	}
+	
+	private ArrayList<String> inverseArrayOrder(ArrayList<String> list) {
+		ArrayList<String> tmp = new ArrayList<String>();
+
+		for (int i = list.size(); i != 0; i--)
+			tmp.add(list.get(i - 1));
+		
+		return tmp;
 	}
 	
 	private void delEvent(ArrayList<Button> delButtonArray) {
@@ -101,7 +104,9 @@ public class BodyEvent implements IBody {
 								clearBody();							
 								
 								Bibliotheque.removeElementBibliotheque(delButtonArray.get(j).getName());
-								new Body(Bibliotheque.coverPathArray, Body.currentOnglet);
+								sortButton.setText(sortAscend);
+								
+								new Body(Bibliotheque.coverPathArray, Body.currentTab);
 								
 								frame.repaint();
 								break;

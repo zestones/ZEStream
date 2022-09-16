@@ -21,8 +21,7 @@ import utils.UI.Title;
 import utils.shape.Position;
 
 public class Setting implements IGlobal, ISetting {
-	private static final Dimension PATH_CARD_DIM = new Dimension(FRAME_WIDTH - 222, 110);
-	
+
     private ArrayList<Button> deleteButtonArray;
     private ArrayList<JPanel> cardButtonArray;
     
@@ -32,8 +31,6 @@ public class Setting implements IGlobal, ISetting {
 	protected static Button modifyFolderCoverName;
 	
 	protected static String folderCoverName;
-	
-	private static final String FILE_COVER_NAME = "./.res/cover_name.txt";
 	    
 	public Setting() {
 		container.setBackground(DARK_THEME);
@@ -76,7 +73,7 @@ public class Setting implements IGlobal, ISetting {
 			Title t = new Title(f.getName(), new Position(20, 20), 22, Color.white, Font.BOLD);
 			
 			Title path = new Title(folder, new Position(55, 65), 18, Color.white, Font.PLAIN);
-			Button delete = new Button(new Position(card.getWidth() - 45, 15), "./.res/delete.png", folder, new Dimension(25, 25), false);
+			Button delete = new Button(new Position(card.getWidth() - 45, 15), DELETE_ICON, folder, new Dimension(25, 25), false);
 			
 			card.add(t);
 			card.add(path);
@@ -108,7 +105,7 @@ public class Setting implements IGlobal, ISetting {
 		container.add(folderCoverBtn);
 				
 		p.setX(p.getX() + folderCoverBtn.getWidth() + 10);
-		modifyFolderCoverName = new Button(p, "./.res/modify.png", "path", new Dimension(folderCoverBtn.getHeight(), folderCoverBtn.getHeight()), false);
+		modifyFolderCoverName = new Button(p, MODIFY_ICON, "path", new Dimension(folderCoverBtn.getHeight(), folderCoverBtn.getHeight()), false);
 		modifyFolderCoverName.setContentAreaFilled(false);
 		container.add(modifyFolderCoverName);
 				

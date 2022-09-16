@@ -9,10 +9,9 @@ import java.awt.event.MouseEvent;
 import body.bibliotheque.Bibliotheque;
 import body.main.Body;
 import home.Home;
-import home.IGlobal;
 import settings.Setting;
 
-public class MenuEvent implements IGlobal, IMenu {
+public class MenuEvent implements IMenu {
 	
 	
 	public MenuEvent() {
@@ -33,7 +32,7 @@ public class MenuEvent implements IGlobal, IMenu {
 				anime.setActiveButton();
 				unsetActiveButton(anime.getText());
 				
-				new Body(Home.coverPathArray, "Anime");
+				new Body(Home.coverPathArray, SERIES_TAB);
 				
 				frame.repaint();
 			}
@@ -48,8 +47,8 @@ public class MenuEvent implements IGlobal, IMenu {
 				biblio.setActiveButton();
 				unsetActiveButton(biblio.getText());
 				
-				Bibliotheque.getBiblioCoverFolders();
-				new Body(Bibliotheque.coverPathArray, "Biblio");
+				Bibliotheque.getBiblioInfosFolder();
+				new Body(Bibliotheque.coverPathArray, LIBRARY_TAB);
 				
 				frame.repaint();
 			}
@@ -66,7 +65,7 @@ public class MenuEvent implements IGlobal, IMenu {
 								
 				param.setActiveButton();
 				unsetActiveButton(param.getText());
-				Body.currentOnglet = "Param";
+				Body.currentTab = "Param";
 				
 				new Setting();
 				

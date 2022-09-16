@@ -9,16 +9,15 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JButton;
 
-import home.IGlobal;
 import utils.shape.Position;
 import utils.shape.Rectangle;
 
-public class MenuButton extends JButton implements IGlobal, IMenu {
+public class MenuButton extends JButton implements IMenu {
 		
 	private static final long serialVersionUID = 1L;
 	
-	private Color ForegroundActive = new Color(255, 255, 255);
-	private Color ForegroundInactive = new Color(186, 186, 186);
+	private Color FOREGROUND_ACTIVE = new Color(255, 255, 255);
+	private Color FOREGROUND_INACTIVE = new Color(186, 186, 186);
 	
 	private Dimension dim;
 	private Position pos;
@@ -52,7 +51,7 @@ public class MenuButton extends JButton implements IGlobal, IMenu {
 		Font font = new Font("Inter", Font.PLAIN, 24);
 		setFont(font);
 
-		setForeground(ForegroundInactive);
+		setForeground(FOREGROUND_INACTIVE);
 		setText(text);
 		
 		textwidth = (int) (font.getStringBounds(text, frc).getWidth());
@@ -84,17 +83,17 @@ public class MenuButton extends JButton implements IGlobal, IMenu {
 	
 	public void setActiveButton() {
 		this.isActive = true;
-		this.setForeground(ForegroundActive);
+		this.setForeground(FOREGROUND_ACTIVE);
 		
 		this.setUnderline(DEFAULT_UNDERLINE_SIZE);		
 	}
 	
 	public void setHoverButton() {
-		this.setForeground(ForegroundActive);
+		this.setForeground(FOREGROUND_ACTIVE);
 	}
 	
 	public void unsetHoverButton() {
-		this.setForeground(ForegroundInactive);
+		this.setForeground(FOREGROUND_INACTIVE);
 		this.isActive = false;
 	}
 	
