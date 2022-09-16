@@ -89,7 +89,7 @@ Il va être possible d'ajouter des éléments à la bibliothèque et d'enregistr
 <img src="doc/video/bookmark.gif" 
     style="text-align:center;" />
 
-En effectuant un clique droit sur un fichier vidéo, on l'ajoute automatiquement à la bibliothèque. Le fichier sera alors affiché en rouge. 
+Pour cela on pourra cliquer sur l'icône à droite du fichier vidéo ou réaliser un clique droit sur le fichier. Le fichier sera alors affiché en rouge et la séries (ou le film) ajouté à la bibliothèque. 
 
 De plus, le chemin jusqu'au fichier sera mis en évidence à l'aide d'une couleur différente pour les titres (en l'occurrence bleue) sous les images des dossiers.
 Une icône s'affichera également à côté des images dans l'onglet *Séries* lorsque la série a déjà été ajoutée à la bibliothèque.
@@ -99,9 +99,24 @@ Une icône s'affichera également à côté des images dans l'onglet *Séries* l
 
 Une fois une série ou un Film terminé il pourra être retiré de la bibliothèque en cliquant sur la petite icône supprimer.
 
+## Execution
+### Linux
+Vous retrouverez le jar executable dans le dossier  ````JAR File > runnable > linux````
+
+````
+java -jar ./JAR File/runnable/linux/ZEStream.jar &
+````
+
+## Windows
+Vous retrouverez l'executable dans le dossier ````JAR File > runnable > windows````
+
+
+> **ATTENTION**\
+> Que vous soyez sur linux ou windows le dossier res doit être au même endroit que l'executable.
+
+
+*Si vous êtes sur windows je vous conseil de déplacer l'executable ainsi que le dossier res dans le dossier Program Files et de créer un racourcis sur votre Bureau.*
 
 ## Précision Générale
 * Le dossier contenant les images est nommé par défaut **"Cover"**
 * Les vidéos sont exécutées en fonction du lecteur vidéo défini par défaut sur votre machine. Il est possible qu'en fonction de l'extension de votre fichier, différent lecteur soit lancé. 
-
-## Execution
