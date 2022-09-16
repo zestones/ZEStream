@@ -58,16 +58,10 @@ public class BodyEvent implements IBody {
 		sortButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> tmp = new ArrayList<String>();
+
+				if (Body.currentOnglet.equals("Anime")) tmp = inverseArrayOrder(Home.coverPathArray);
+				else tmp = inverseArrayOrder(Bibliotheque.coverPathArray);
 				
-				if (Body.currentOnglet.equals("Anime")) {
-					for (int i = Home.coverPathArray.size(); i != 0; i--)
-						tmp.add(Home.coverPathArray.get(i - 1));					
-				}
-				else {
-					for (int i = Bibliotheque.coverPathArray.size(); i != 0; i--)
-						tmp.add(Bibliotheque.coverPathArray.get(i - 1));		
-				}
-			
 				if (sortAscend == sortButton.getText()) sortButton.setText(sortDescend);
 				else sortButton.setText(sortAscend);
 				
@@ -86,6 +80,15 @@ public class BodyEvent implements IBody {
 				frame.repaint();					
 			}
 		});
+	}
+	
+	private ArrayList<String> inverseArrayOrder(ArrayList<String> list) {
+		ArrayList<String> tmp = new ArrayList<String>();
+
+		for (int i = list.size(); i != 0; i--)
+			tmp.add(list.get(i - 1));
+		
+		return tmp;
 	}
 	
 	private void delEvent(ArrayList<Button> delButtonArray) {

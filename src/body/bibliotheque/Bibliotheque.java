@@ -35,8 +35,8 @@ public abstract class Bibliotheque {
 				
 				updateBibliotheque(parent);
 				saveNewEntry(parent, ep, path);
-				getBiblioCoverFolders();
-
+				getBiblioInfosFolder();
+				
 				success = true;
 			}
 		}
@@ -46,8 +46,8 @@ public abstract class Bibliotheque {
 			success = true;
 		}
 		
-		getBiblioCoverFolders();
-		
+		getBiblioInfosFolder();
+
 		return success;
 	}
 	
@@ -98,7 +98,7 @@ public abstract class Bibliotheque {
 			}
 		}
 		
-		getBiblioCoverFolders();
+		getBiblioInfosFolder();	
 	}
 	
 	private static String getImageExtension(String path, String title) {
@@ -147,13 +147,17 @@ public abstract class Bibliotheque {
 		return false;
 	}
 	
-	public static void getBiblioCoverFolders() {
-		
+	private static void clearAllInfos() {
 		coverPathArray.removeAll(coverPathArray);
 		seriesEpisode.removeAll(seriesEpisode);
 		seriesPath.removeAll(seriesPath);
 		seriesTitle.removeAll(seriesTitle);
 		seriesParent.removeAll(seriesParent);
+	}
+	
+	public static void getBiblioInfosFolder() {
+		
+		clearAllInfos();
 
 		try {
 			File myObj = new File(FILE);

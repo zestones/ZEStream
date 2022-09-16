@@ -48,7 +48,7 @@ public class MenuEvent implements IGlobal, IMenu {
 				biblio.setActiveButton();
 				unsetActiveButton(biblio.getText());
 				
-				Bibliotheque.getBiblioCoverFolders();
+				Bibliotheque.getBiblioInfosFolder();
 				new Body(Bibliotheque.coverPathArray, "Biblio");
 				
 				frame.repaint();

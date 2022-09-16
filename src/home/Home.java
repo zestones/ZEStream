@@ -28,7 +28,7 @@ public class Home implements IGlobal {
 		PathManager.initPathToCovers();
 		PathManager.sortPathArray(coverPathArray);
 		
-		Bibliotheque.getBiblioCoverFolders();
+		Bibliotheque.getBiblioInfosFolder();
 	
 		new Menu();
 		new Body(coverPathArray, "Anime");
