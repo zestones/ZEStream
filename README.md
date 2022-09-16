@@ -34,27 +34,27 @@ Movie
 │ 
 └─── Example 01
 │   │   movie-example-01.mp4
-|   |   movie-example-02.mp4
-|   |   movie-example-03.mp4
+│   │   movie-example-02.mp4
+│   │   movie-example-03.mp4
 │   │
 │   └─── Cover
 │       │   Example 01.jpg
 │       
 └─── Example 02
-|   │   
-|   |
-|   └─── Cover
-|   |   |   Example 02.jpg
-|   |   |   part 01.jpg
-|   |   |   part 02.jpg
-|   |   
-|   └─── part 01
-|   |   |   movie-example-02-part01.mp4
-|   |
-|   └─── part 02
-|   |   |   movie-example-02-part02.mp4
-|   |
-|   └───  ...
+│   │   
+│   │
+│   └─── Cover
+│   │   │   Example 02.jpg
+│   │   │   part 01.jpg
+│   │   │   part 02.jpg
+│   │   
+│   └─── part 01
+│   │   │   movie-example-02-part01.mp4
+│   │
+│   └─── part 02
+│   │   │   movie-example-02-part02.mp4
+│   │
+│   └───  ...
 └─── ...
 
 ```
@@ -72,6 +72,8 @@ Pour résumer vous avez deux possibilités:
 
 1. Movie > Movie Example 01 > [fichiers vidéos] + [Dossier Img]
 2. Movie > Movie Example 02 > sous-dossier + [Dossier Img] > [fichiers videos]
+
+Vous trouverez cette exemple dans le dossier ````JAR File > example````
 
 ### L'ajout de Cover
 
@@ -101,20 +103,21 @@ Une fois une série ou un Film terminé il pourra être retiré de la bibliothè
 
 ## Execution
 ### Linux
-Vous retrouverez le jar executable dans le dossier  ````JAR File > runnable > linux````
+Vous trouverez le jar executable dans le dossier  ````JAR File > runnable > linux````
 
 ````
 java -jar ./JAR File/runnable/linux/ZEStream.jar &
 ````
 
 ## Windows
-Vous retrouverez l'executable dans le dossier ````JAR File > runnable > windows````
+Vous trouverez l'executable dans le dossier ````JAR File > runnable > windows````
 
 
 > **ATTENTION**\
 > Que vous soyez sur linux ou windows le dossier res doit être au même endroit que l'executable.
 
-*Si vous êtes sur windows je vous conseil de déplacer l'executable ainsi que le dossier res dans un dossier de votre choix et de créer un racourcis sur votre Bureau.*
+
+*Si vous êtes sur windows je vous conseil de déplacer l'executable ainsi que le dossier res dans le dossier Program Files et de créer un racourcis sur votre Bureau.*
 
 ## Précision Générale
 * Le dossier contenant les images est nommé par défaut **"Cover"**
