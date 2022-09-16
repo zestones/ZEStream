@@ -114,8 +114,7 @@ Vous retrouverez l'executable dans le dossier ````JAR File > runnable > windows`
 > **ATTENTION**\
 > Que vous soyez sur linux ou windows le dossier res doit être au même endroit que l'executable.
 
-
-*Si vous êtes sur windows je vous conseil de déplacer l'executable ainsi que le dossier res dans le dossier Program Files et de créer un racourcis sur votre Bureau.*
+*Si vous êtes sur windows je vous conseil de déplacer l'executable ainsi que le dossier res dans un dossier de votre choix et de créer un racourcis sur votre Bureau.*
 
 ## Précision Générale
 * Le dossier contenant les images est nommé par défaut **"Cover"**
