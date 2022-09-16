@@ -122,7 +122,7 @@ public class SettingEvent implements IGlobal, ISetting {
 								Setting.modifyFolderCoverName.getPosition().getX(),
 								Setting.modifyFolderCoverName.getPosition().getY() + 2
 								),
-						"./res/submit.png", 
+						SUBMIT_ICON, 
 						"path", 
 						new Dimension(100, (int) dim.getHeight()), 
 						false

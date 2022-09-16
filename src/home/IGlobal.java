@@ -36,4 +36,5 @@ public interface IGlobal {
 	Dimension DIM_CARD = new Dimension(CARD_WIDTH, CARD_HEIGHT);
 	
 	String IMG_NOT_FOUND = "./res/img-not-found.jpg";
+	String DELETE_ICON = "./res/delete.png";
 }

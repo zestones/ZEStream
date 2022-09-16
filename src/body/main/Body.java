@@ -150,7 +150,7 @@ public class Body implements IBody {
 						c = SAVED_CARD_COLOR;
 						
 						if (currentOnglet.equals("Anime")) {
-							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./res/bookmark.png", new Dimension(20, 78));
+							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), BOOKMARK_ICON, new Dimension(20, 78));
 							container.add(bookmarks);
 						}
 					}
@@ -226,7 +226,7 @@ public class Body implements IBody {
 						c = SAVED_CARD_COLOR;
 						if (currentOnglet.equals("Anime")) {
 											
-							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./res/bookmark.png", new Dimension(20, 78));
+							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), BOOKMARK_ICON, new Dimension(20, 78));
 							container.add(bookmarks);
 						}
 					}

@@ -26,5 +26,5 @@ public interface IBody extends IMenu {
 	Color SAVED_CARD_COLOR = new Color(85, 100, 185);
 	Color DEFAULT_CARD_COLOR = new Color(215, 215, 215);
 	
-	String DELETE_ICON = "./res/delete.png";
+	String BOOKMARK_ICON = "./res/bookmark.png";
 }

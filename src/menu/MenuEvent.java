@@ -9,10 +9,9 @@ import java.awt.event.MouseEvent;
 import body.bibliotheque.Bibliotheque;
 import body.main.Body;
 import home.Home;
-import home.IGlobal;
 import settings.Setting;
 
-public class MenuEvent implements IGlobal, IMenu {
+public class MenuEvent implements IMenu {
 	
 	
 	public MenuEvent() {
