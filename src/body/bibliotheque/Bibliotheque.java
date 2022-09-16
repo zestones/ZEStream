@@ -25,7 +25,7 @@ public abstract class Bibliotheque {
 	public static ArrayList<String> seriesParent = new ArrayList<String>();
 	public static ArrayList<String> seriesTitle = new ArrayList<String>();
 
-	private static final String FILE = "./.res/bibliotheque.txt";
+	private static final String FILE = "./res/bibliotheque.txt";
 	
 	public static boolean updateBiblioPathFolders(String parent, String ep, String path) {
 		boolean success = false;

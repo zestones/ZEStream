@@ -60,6 +60,7 @@ public class Body implements IBody {
 		container.add(new Title("Filtrer : ", new Position(50, 125), 14, Color.white, Font.PLAIN));
 		
 		sortButton.setContentAreaFilled(false);
+		sortButton.setBorderPainted(true);
 		
 		if (!onglet.equals(currentOnglet) && sortButton.getText() == sortDescend) 
 			sortButton.setText(sortAscend);
@@ -92,7 +93,7 @@ public class Body implements IBody {
 
 	    container.setLayout(null);
 	    container.add(backButton);
-		
+		  
 		String title = new File(folderPath).getName();
 		
 		Title pageTitle = new Title(title, new Position(50, 90), 32, Color.white, Font.BOLD);
@@ -149,7 +150,7 @@ public class Body implements IBody {
 						c = SAVED_CARD_COLOR;
 						
 						if (currentOnglet.equals("Anime")) {
-							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/bookmark.png", new Dimension(20, 78));
+							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./res/bookmark.png", new Dimension(20, 78));
 							container.add(bookmarks);
 						}
 					}
@@ -225,7 +226,7 @@ public class Body implements IBody {
 						c = SAVED_CARD_COLOR;
 						if (currentOnglet.equals("Anime")) {
 											
-							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/bookmark.png", new Dimension(20, 78));
+							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./res/bookmark.png", new Dimension(20, 78));
 							container.add(bookmarks);
 						}
 					}

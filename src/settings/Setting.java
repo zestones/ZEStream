@@ -33,7 +33,7 @@ public class Setting implements IGlobal, ISetting {
 	
 	protected static String folderCoverName;
 	
-	private static final String FILE_COVER_NAME = "./.res/cover_name.txt";
+	private static final String FILE_COVER_NAME = "./res/cover_name.txt";
 	    
 	public Setting() {
 		container.setBackground(DARK_THEME);
@@ -76,7 +76,7 @@ public class Setting implements IGlobal, ISetting {
 			Title t = new Title(f.getName(), new Position(20, 20), 22, Color.white, Font.BOLD);
 			
 			Title path = new Title(folder, new Position(55, 65), 18, Color.white, Font.PLAIN);
-			Button delete = new Button(new Position(card.getWidth() - 45, 15), "./.res/delete.png", folder, new Dimension(25, 25), false);
+			Button delete = new Button(new Position(card.getWidth() - 45, 15), "./res/delete.png", folder, new Dimension(25, 25), false);
 			
 			card.add(t);
 			card.add(path);
@@ -108,7 +108,7 @@ public class Setting implements IGlobal, ISetting {
 		container.add(folderCoverBtn);
 				
 		p.setX(p.getX() + folderCoverBtn.getWidth() + 10);
-		modifyFolderCoverName = new Button(p, "./.res/modify.png", "path", new Dimension(folderCoverBtn.getHeight(), folderCoverBtn.getHeight()), false);
+		modifyFolderCoverName = new Button(p, "./res/modify.png", "path", new Dimension(folderCoverBtn.getHeight(), folderCoverBtn.getHeight()), false);
 		modifyFolderCoverName.setContentAreaFilled(false);
 		container.add(modifyFolderCoverName);
 				

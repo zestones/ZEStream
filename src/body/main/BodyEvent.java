@@ -104,6 +104,8 @@ public class BodyEvent implements IBody {
 								clearBody();							
 								
 								Bibliotheque.removeElementBibliotheque(delButtonArray.get(j).getName());
+								sortButton.setText(sortAscend);
+								
 								new Body(Bibliotheque.coverPathArray, Body.currentOnglet);
 								
 								frame.repaint();

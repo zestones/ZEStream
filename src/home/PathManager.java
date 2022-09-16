@@ -14,7 +14,7 @@ import filter.FileSearch;
 import utils.UI.PopUp;
 
 public abstract class PathManager extends Home {
-	private static final String FILE_FOLDER_PATH = "./.res/folders-path.txt";
+	private static final String FILE_FOLDER_PATH = "./res/folders-path.txt";
 
 	public static void updatePathFolders() {
 
