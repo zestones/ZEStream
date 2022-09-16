@@ -64,9 +64,9 @@ public class ScrollPanel extends JScrollPane implements IGlobal {
 						if (posView.getY() - lastPosY >= REFRESH_HEIGHT) {
 							lastPosY = posView.getY();
 						
-							if (Body.currentOnglet.equals("Biblio") && Body.depth == 0) 
+							if (Body.currentTab.equals(LIBRARY_TAB) && Body.depth == 0) 
 								Body.updateBodyContent(Bibliotheque.coverPathArray);							
-							else if (Body.currentOnglet.equals("Anime") && Body.depth == 0)
+							else if (Body.currentTab.equals(SERIES_TAB) && Body.depth == 0)
 								Body.updateBodyContent(Home.coverPathArray);				
 						}
 					}

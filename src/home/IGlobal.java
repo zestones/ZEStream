@@ -37,4 +37,7 @@ public interface IGlobal {
 	
 	String IMG_NOT_FOUND = "./res/img-not-found.jpg";
 	String DELETE_ICON = "./res/delete.png";
+
+	String SERIES_TAB = "Séries";
+	String LIBRARY_TAB = "Biblio";
 }

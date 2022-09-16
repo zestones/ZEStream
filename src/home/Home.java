@@ -31,7 +31,7 @@ public class Home implements IGlobal {
 		Bibliotheque.getBiblioInfosFolder();
 	
 		new Menu();
-		new Body(coverPathArray, "Anime");
+		new Body(coverPathArray, SERIES_TAB);
 		
 		frame.pack();
 		frame.setVisible(true);  

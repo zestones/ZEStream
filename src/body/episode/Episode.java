@@ -92,7 +92,7 @@ public class Episode implements IGlobal, IEpisode {
 		
 		// SAISON
 		infos.add(new Title("SAISON", new Position(h1.getX() + 30, h1.getHeight() + h1.getY() + 135), 14, Color.white, Font.BOLD));
-		String season = (type.equalsIgnoreCase("Anime") && folderName.contains("Saison")) ? (folderName.split("[ ]", 0))[1] : "";
+		String season = (type.equalsIgnoreCase("Séries") && folderName.contains("Saison")) ? (folderName.split("[ ]", 0))[1] : "";
 		infos.add(new Title(season, new Position(h1.getX() + 150, h1.getHeight() + h1.getY() + 135), 14, Color.white, Font.PLAIN));
 				
 		container.add(infos);
@@ -144,6 +144,6 @@ public class Episode implements IGlobal, IEpisode {
 		else if (folderName.equalsIgnoreCase("Movie") || folderName.equalsIgnoreCase("FILM")) return "Film";
 		else if (folderName.equalsIgnoreCase("OAV")) return "OAV";
 		else if (folderName.equalsIgnoreCase("Spin-Off")) return "Spin-Off";
-		return  "Anime";
+		return "Séries";
 	}
 }

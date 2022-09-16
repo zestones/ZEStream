@@ -26,7 +26,7 @@ public class BodyEvent implements IBody {
 		cardEvent(cardButtonArray);
 		txtEvent(txtButtonArray);
 		
-		if (Body.currentOnglet.equals("Biblio") && Body.depth < 1) delEvent(delButtonArray);
+		if (Body.currentTab.equals(LIBRARY_TAB) && Body.depth < 1) delEvent(delButtonArray);
 		if (!OK) backButton();
 	}
 	
@@ -42,10 +42,10 @@ public class BodyEvent implements IBody {
 				String folderPath = Body.currentPath.substring(0, sepPos);
 				
 				if (Body.depth == 1) 
-					if (Body.currentOnglet.equals("Anime")) 
-						new Body(Home.coverPathArray, Body.currentOnglet);
+					if (Body.currentTab.equals(SERIES_TAB)) 
+						new Body(Home.coverPathArray, Body.currentTab);
 					else 
-						new Body(Bibliotheque.coverPathArray, Body.currentOnglet);
+						new Body(Bibliotheque.coverPathArray, Body.currentTab);
 				else {	
 					new Body(folderPath);
 					Body.depth -= 2;
@@ -59,7 +59,7 @@ public class BodyEvent implements IBody {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> tmp = new ArrayList<String>();
 
-				if (Body.currentOnglet.equals("Anime")) tmp = inverseArrayOrder(Home.coverPathArray);
+				if (Body.currentTab.equals(SERIES_TAB)) tmp = inverseArrayOrder(Home.coverPathArray);
 				else tmp = inverseArrayOrder(Bibliotheque.coverPathArray);
 				
 				if (sortAscend == sortButton.getText()) sortButton.setText(sortDescend);
@@ -68,13 +68,13 @@ public class BodyEvent implements IBody {
 				container.removeAll();
 				container.revalidate();
 				
-				if (Body.currentOnglet.equals("Anime")) {
+				if (Body.currentTab.equals(SERIES_TAB)) {
 					Home.coverPathArray = tmp;
-					new Body(Home.coverPathArray, "Anime");
+					new Body(Home.coverPathArray, SERIES_TAB);
 				}
 				else {
 					Bibliotheque.coverPathArray = tmp;
-					new Body(Bibliotheque.coverPathArray, "Biblio");
+					new Body(Bibliotheque.coverPathArray, LIBRARY_TAB);
 				}
 				
 				frame.repaint();					
@@ -106,7 +106,7 @@ public class BodyEvent implements IBody {
 								Bibliotheque.removeElementBibliotheque(delButtonArray.get(j).getName());
 								sortButton.setText(sortAscend);
 								
-								new Body(Bibliotheque.coverPathArray, Body.currentOnglet);
+								new Body(Bibliotheque.coverPathArray, Body.currentTab);
 								
 								frame.repaint();
 								break;

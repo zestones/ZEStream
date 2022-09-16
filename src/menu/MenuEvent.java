@@ -32,7 +32,7 @@ public class MenuEvent implements IMenu {
 				anime.setActiveButton();
 				unsetActiveButton(anime.getText());
 				
-				new Body(Home.coverPathArray, "Anime");
+				new Body(Home.coverPathArray, SERIES_TAB);
 				
 				frame.repaint();
 			}
@@ -48,7 +48,7 @@ public class MenuEvent implements IMenu {
 				unsetActiveButton(biblio.getText());
 				
 				Bibliotheque.getBiblioInfosFolder();
-				new Body(Bibliotheque.coverPathArray, "Biblio");
+				new Body(Bibliotheque.coverPathArray, LIBRARY_TAB);
 				
 				frame.repaint();
 			}
@@ -65,7 +65,7 @@ public class MenuEvent implements IMenu {
 								
 				param.setActiveButton();
 				unsetActiveButton(param.getText());
-				Body.currentOnglet = "Param";
+				Body.currentTab = "Param";
 				
 				new Setting();
 				
