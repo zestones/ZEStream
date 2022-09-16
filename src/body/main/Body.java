@@ -43,7 +43,6 @@ public class Body implements IBody {
 	public static String COVER_FOLDER_NAME = Setting.getFolderCoverName();
 	
 	public Body(ArrayList<String> coverPathArray, String onglet) {
-		currentOnglet = onglet;
 		previousPage = "";
 		currentPath = "";
 		depth = 0;
@@ -61,6 +60,11 @@ public class Body implements IBody {
 		container.add(new Title("Filtrer : ", new Position(50, 125), 14, Color.white, Font.PLAIN));
 		
 		sortButton.setContentAreaFilled(false);
+		
+		if (!onglet.equals(currentOnglet) && sortButton.getText() == sortDescend) 
+			sortButton.setText(sortAscend);
+		
+		currentOnglet = onglet;
 		container.add(sortButton);
 		
 		cardButtonArray = new ArrayList<Button>();
@@ -143,8 +147,8 @@ public class Body implements IBody {
 				for (String t : Bibliotheque.seriesTitle) {
 					if (t.equals(fileName)) {
 						c = SAVED_CARD_COLOR;
+						
 						if (currentOnglet.equals("Anime")) {
-											
 							Image bookmarks = new Image(new Position(cardPos.getX() + CARD_WIDTH, cardPos.getY()), "./.res/bookmark.png", new Dimension(20, 78));
 							container.add(bookmarks);
 						}

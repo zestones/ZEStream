@@ -23,7 +23,7 @@ public abstract class PathManager extends Home {
 		
 		getPathFolders();		
 		initPathToCovers();
-		sortPathArray();
+		sortPathArray(coverPathArray);
 	}
 		
 	public static void updatePathFolders(File path) {
@@ -34,7 +34,7 @@ public abstract class PathManager extends Home {
 		else saveFolderPath(path);
 		
 		initPathToCovers(path.toString());
-		sortPathArray();
+		sortPathArray(coverPathArray);
 	}
 	
 	private static void saveFolderPath(File path) {
@@ -137,7 +137,7 @@ public abstract class PathManager extends Home {
 		}
 	}
 	
-	public static void sortPathArray() {
+	public static void sortPathArray(ArrayList<String> coverPathArray) {
 		String separator = SEPARATOR;
 		
 		int pos;

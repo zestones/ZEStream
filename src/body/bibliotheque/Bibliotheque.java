@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import body.main.Body;
 import filter.FileSearch;
 import home.IGlobal;
+import home.PathManager;
 import utils.UI.PopUp;
 
 public abstract class Bibliotheque {
@@ -136,9 +137,7 @@ public abstract class Bibliotheque {
 			}
 		}
 		else new PopUp("Choisir un dossier !", "Erreur !", JOptionPane.ERROR_MESSAGE);
-
 	}
-	
 	
 	private static boolean pathAlreadySaved(String title) {
 		
@@ -149,6 +148,7 @@ public abstract class Bibliotheque {
 	}
 	
 	public static void getBiblioCoverFolders() {
+		
 		coverPathArray.removeAll(coverPathArray);
 		seriesEpisode.removeAll(seriesEpisode);
 		seriesPath.removeAll(seriesPath);
@@ -180,5 +180,7 @@ public abstract class Bibliotheque {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
+		
+		PathManager.sortPathArray(coverPathArray);
 	}
 }

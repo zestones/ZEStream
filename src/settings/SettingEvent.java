@@ -142,7 +142,7 @@ public class SettingEvent implements IGlobal, ISetting {
 						PathManager.getPathFolders();
 						
 						PathManager.initPathToCovers();
-						PathManager.sortPathArray();
+						PathManager.sortPathArray(Home.coverPathArray);
 						
 						Bibliotheque.getBiblioCoverFolders();
 						

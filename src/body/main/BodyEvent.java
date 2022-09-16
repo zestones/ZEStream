@@ -58,6 +58,7 @@ public class BodyEvent implements IBody {
 		sortButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> tmp = new ArrayList<String>();
+				
 				if (Body.currentOnglet.equals("Anime")) {
 					for (int i = Home.coverPathArray.size(); i != 0; i--)
 						tmp.add(Home.coverPathArray.get(i - 1));					
@@ -67,8 +68,7 @@ public class BodyEvent implements IBody {
 						tmp.add(Bibliotheque.coverPathArray.get(i - 1));		
 				}
 			
-				if (sortAscend == sortButton.getText())			
-					sortButton.setText(sortDescend);
+				if (sortAscend == sortButton.getText()) sortButton.setText(sortDescend);
 				else sortButton.setText(sortAscend);
 				
 				container.removeAll();

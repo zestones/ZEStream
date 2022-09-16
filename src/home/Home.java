@@ -26,7 +26,7 @@ public class Home implements IGlobal {
 		PathManager.getPathFolders();
 		
 		PathManager.initPathToCovers();
-		PathManager.sortPathArray();
+		PathManager.sortPathArray(coverPathArray);
 		
 		Bibliotheque.getBiblioCoverFolders();
 	
