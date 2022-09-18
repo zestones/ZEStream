@@ -126,7 +126,7 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 		setIcon(icon);
 
 		setBackground(DARK_THEME);
-
+		
 		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setHorizontalTextPosition(SwingConstants.CENTER);
 

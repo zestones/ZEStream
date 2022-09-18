@@ -18,6 +18,7 @@ import utils.OsUtils;
 import utils.UI.Button;
 import utils.UI.Image;
 import utils.UI.ScrollPanel;
+import utils.UI.SearchBar;
 import utils.UI.Title;
 import utils.shape.Position;
 
@@ -62,8 +63,17 @@ public class Body implements IBody {
 		sortButton.setContentAreaFilled(false);
 		sortButton.setBorderPainted(true);
 		
-		if (!onglet.equals(currentTab) && sortButton.getText() == sortDescend) 
-			sortButton.setText(sortAscend);
+		if (!onglet.equals(currentTab)) {
+			SearchBar.isSearching = false;
+			
+			searchBar.setText(searchBar.defaultTxt);
+
+			searchBar.setFocusable(false);
+			searchBar.setDarkTheme();
+			
+			if (sortButton.getText() == sortDescend) 
+				sortButton.setText(sortAscend);
+		}
 		
 		currentTab = onglet;
 		container.add(sortButton);
@@ -84,6 +94,13 @@ public class Body implements IBody {
 		depth++;
 		if (depth == 1) parentPathName = folderPath;
 				
+		if (SearchBar.isSearching) {
+			searchBar.setText(searchBar.defaultTxt);
+
+			searchBar.setFocusable(false);
+			searchBar.setDarkTheme();
+		}
+		
 		sp.posView = new Position(0, 0);
 		ScrollPanel.lastPosY = 0;
 		indexDisplayView = 0;

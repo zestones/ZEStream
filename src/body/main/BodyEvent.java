@@ -18,6 +18,7 @@ import home.Home;
 import home.IGlobal;
 import utils.UI.Button;
 import utils.UI.PopUp;
+import utils.UI.SearchBar;
 
 public class BodyEvent implements IBody {
 	private static boolean OK = false;
@@ -59,22 +60,35 @@ public class BodyEvent implements IBody {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> tmp = new ArrayList<String>();
 
-				if (Body.currentTab.equals(SERIES_TAB)) tmp = inverseArrayOrder(Home.coverPathArray);
-				else tmp = inverseArrayOrder(Bibliotheque.coverPathArray);
-				
+				if (!SearchBar.isSearching) {
+					if (Body.currentTab.equals(SERIES_TAB)) tmp = inverseArrayOrder(Home.coverPathArray);
+					else tmp = inverseArrayOrder(Bibliotheque.coverPathArray);					
+				}
+				else {
+					tmp = inverseArrayOrder(SearchBar.sortedCoverPathArray);
+					SearchBar.sortedCoverPathArray = tmp;
+				}
+
 				if (sortAscend == sortButton.getText()) sortButton.setText(sortDescend);
 				else sortButton.setText(sortAscend);
-				
+			
 				container.removeAll();
 				container.revalidate();
 				
-				if (Body.currentTab.equals(SERIES_TAB)) {
-					Home.coverPathArray = tmp;
-					new Body(Home.coverPathArray, SERIES_TAB);
+				if (SearchBar.isSearching) {
+					container.add(reset);
+					String tab = (Body.currentTab.equals(SERIES_TAB)) ? SERIES_TAB: LIBRARY_TAB;
+					new Body(SearchBar.sortedCoverPathArray, tab);	
 				}
-				else {
-					Bibliotheque.coverPathArray = tmp;
-					new Body(Bibliotheque.coverPathArray, LIBRARY_TAB);
+				else {					
+					if (Body.currentTab.equals(SERIES_TAB)) {
+						Home.coverPathArray = tmp;
+						new Body(Home.coverPathArray, SERIES_TAB);
+					}
+					else {
+						Bibliotheque.coverPathArray = tmp;
+						new Body(Bibliotheque.coverPathArray, LIBRARY_TAB);
+					}					
 				}
 				
 				frame.repaint();					

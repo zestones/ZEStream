@@ -20,17 +20,17 @@ public class MenuEvent implements IMenu {
 	}
 	
 	private void handleButtonEvent() {
-		anime.addActionListener(new ActionListener() {
+		series.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if(anime.isButtonActive() && Body.depth == 0) return;
+				if(series.isButtonActive() && Body.depth == 0) return;
 				
 				container.removeAll();
 				container.revalidate();
 				sp.remove(container);
 				
-				anime.setActiveButton();
-				unsetActiveButton(anime.getText());
+				series.setActiveButton();
+				unsetActiveButton(series.getText());
 				
 				new Body(Home.coverPathArray, SERIES_TAB);
 				
@@ -75,10 +75,10 @@ public class MenuEvent implements IMenu {
 	}
 	
 	private void handleMouseMotion() {
-		anime.addMouseMotionListener(new MouseAdapter() {
+		series.addMouseMotionListener(new MouseAdapter() {
     		public void mouseMoved(MouseEvent e) {
-    			anime.setHoverButton();
-    			unsetHoverAllButton(anime.getText());
+    			series.setHoverButton();
+    			unsetHoverAllButton(series.getText());
     		}	
 		});
 		
@@ -117,13 +117,13 @@ public class MenuEvent implements IMenu {
 	}
 	
 	private void unsetActiveButton(String txt) {
-		if (anime.isButtonActive() && txt != anime.getText()) anime.unsetHoverButton();
+		if (series.isButtonActive() && txt != series.getText()) series.unsetHoverButton();
 		if (biblio.isButtonActive() && txt != biblio.getText()) biblio.unsetHoverButton();
 		if (param.isButtonActive() && txt != param.getText()) param.unsetHoverButton();
 	}
 	
 	private void unsetHoverAllButton(String txt) {
-		if (!anime.isButtonActive() && txt != anime.getText()) anime.unsetHoverButton();
+		if (!series.isButtonActive() && txt != series.getText()) series.unsetHoverButton();
 		if (!biblio.isButtonActive() && txt != biblio.getText()) biblio.unsetHoverButton();
 		if (!param.isButtonActive() && txt != param.getText()) param.unsetHoverButton();
 	}

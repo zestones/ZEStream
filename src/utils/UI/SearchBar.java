@@ -11,18 +11,27 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import body.bibliotheque.Bibliotheque;
+import body.main.Body;
+import filter.StringSimilarity;
+import home.Home;
 import menu.IMenu;
 import utils.shape.Position;
 
 public class SearchBar extends JTextField implements KeyListener, IMenu {
 	private static final long serialVersionUID = 1L;
 
-	private String defaultTxt;
+	public static ArrayList<String> sortedCoverPathArray = new ArrayList<String>();
+	public static boolean isSearching = false;
+	
+	
+	public String defaultTxt;
 	private boolean isFocused;
 	
 	private Button search;
@@ -46,6 +55,8 @@ public class SearchBar extends JTextField implements KeyListener, IMenu {
 		setFocusable(false);
 		
 		search = new Button(new Position(x + width + 10, y), SEARCH_ICON, "search icon", new Dimension(26, 30), false);
+		search.setContentAreaFilled(false);
+
 		header.add(search);
 				
 		setDarkTheme();
@@ -57,7 +68,7 @@ public class SearchBar extends JTextField implements KeyListener, IMenu {
 		addEventValidateSearch();
 		
 		setHoverSearchBarEvent();
-//		unsetHoverSearchBar(container);
+		unsetHoverSearchBarEvent(container);
 		unsetHoverSearchBarEvent(header);
 	
 		trackFocus();
@@ -72,7 +83,6 @@ public class SearchBar extends JTextField implements KeyListener, IMenu {
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				searchFiles();
-				setDarkTheme();
 			}
 		});
 	}
@@ -85,9 +95,81 @@ public class SearchBar extends JTextField implements KeyListener, IMenu {
 		});
 	}
 	
+	private ArrayList<String> sortByScore(ArrayList<String> coverPathArray, ArrayList<Double> scoreArray) {
+		
+        int n = scoreArray.size();
+        
+        for (int i = 0; i < n - 1; i++) {
+
+        	int min_idx = i;
+            for (int j = i + 1; j < n; j++)
+                if (scoreArray.get(j) > scoreArray.get(min_idx))
+                    min_idx = j;
+ 
+            String temp = coverPathArray.get(min_idx);
+            coverPathArray.set(min_idx, coverPathArray.get(i));
+            coverPathArray.set(i, temp);
+        }
+                
+        return coverPathArray;
+	}
+	
+	private void searchFiles(String tab, ArrayList<String> searchArray, ArrayList<String> cmp) {
+		ArrayList<String> coverPathArray = new ArrayList<String>();
+		ArrayList<Double> scoreArray = new ArrayList<Double>();
+		
+		int index = 0;
+		for (String t : searchArray) {
+			
+			double score = StringSimilarity.similarity(getText(), t);
+			if (score > 0.35) {
+				coverPathArray.add(cmp.get(index));
+				scoreArray.add(score);
+			}
+			
+			index++;
+		}
+		
+		sortedCoverPathArray = sortByScore(coverPathArray, scoreArray);
+		isSearching = true;
+		
+		container.removeAll();
+		
+		reset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				isSearching = false;
+				setText(searchBar.defaultTxt);
+
+				setFocusable(false);
+				setDarkTheme();
+				
+				container.removeAll();
+				container.revalidate();
+								
+				if (Body.currentTab.equals(SERIES_TAB)) new Body(Home.coverPathArray, SERIES_TAB);
+				else new Body(Bibliotheque.coverPathArray, LIBRARY_TAB);	
+				
+				container.repaint();
+			}
+		});
+		
+		container.add(reset);
+		
+		new Body(sortedCoverPathArray, tab);
+	}
+	
 	private void searchFiles() {
-		System.out.println("Text = " + getText());
+		if (getText().equals(defaultTxt)) return;
+		
+		if (Body.currentTab.equals(SERIES_TAB))
+			searchFiles(SERIES_TAB, Home.seriesTitle, Home.coverPathArray);
+		else if (Body.currentTab.equals(LIBRARY_TAB))
+			searchFiles(LIBRARY_TAB, Bibliotheque.seriesTitle, Bibliotheque.coverPathArray);
+//		else searchFiles(SERIES_TAB, Home.seriesTitle, Home.coverPathArray);
+
 		setFocusable(false);
+		setDarkTheme();
 	}
 
 	private void setHoverSearchBarEvent() {
@@ -111,7 +193,7 @@ public class SearchBar extends JTextField implements KeyListener, IMenu {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setText("");
+				if (getText().equals(defaultTxt)) setText("");
 				setFocusable(true);
 				requestFocus();
 			}
@@ -132,7 +214,7 @@ public class SearchBar extends JTextField implements KeyListener, IMenu {
 		});
 	}
 		
-	private void setDarkTheme() {
+	public void setDarkTheme() {
 		setBackground(new Color(80, 80, 80));
 		setForeground(Color.white);
 	}

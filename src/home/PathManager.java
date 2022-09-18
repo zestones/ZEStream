@@ -127,6 +127,8 @@ public abstract class PathManager extends Home {
 			
 			String extension = "";
 			for (String file : fs.getFileInDepth()) {
+
+				seriesTitle.add(file);
 				
 				File f = new File(path + SEPARATOR + file);
 				if (f.isFile()) continue;
@@ -149,13 +151,16 @@ public abstract class PathManager extends Home {
 			String p1, p2;
 			
 			for (int j = i + 1; j < coverPathArray.size(); j++) {
+				
 				sepPos1 = coverPathArray.get(j).lastIndexOf(separator) + 1;
 				p1 = coverPathArray.get(j).substring(sepPos1).trim();
+				String s1 = p1.split("[.]", 0)[0];
 				
 				sepPos2 = coverPathArray.get(pos).lastIndexOf(separator) + 1;
 				p2 = coverPathArray.get(pos).substring(sepPos2).trim();
-
-				if (p1.compareTo(p2) < 0) pos = j;
+				String s2 = p2.split("[.]", 0)[0];
+				
+				if (s1.compareTo(s2) < 0) pos = j;
             }
 
             temp = coverPathArray.get(pos);
