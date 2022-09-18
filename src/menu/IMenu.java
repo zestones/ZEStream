@@ -20,5 +20,6 @@ public interface IMenu extends IGlobal {
 	MenuButton anime = new MenuButton("Séries", 20, 20);
 	MenuButton biblio = new MenuButton("Bibliothèque", anime.getWidth() + 30, 20);
 	MenuButton param = new MenuButton("Paramètres", (int) (anime.getWidth() + biblio.getWidth()) + 30, 20);
-
+	
+	String SEARCH_ICON = "./res/search.png";
 }
