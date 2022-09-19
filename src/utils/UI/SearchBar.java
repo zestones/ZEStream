@@ -160,7 +160,15 @@ public class SearchBar extends JTextField implements KeyListener, IMenu {
 	}
 	
 	private void searchFiles() {
-		if (getText().equals(defaultTxt)) return;
+		
+		if (getText().equals(defaultTxt) || getText().isEmpty()) {
+			setText(defaultTxt);
+			
+			setFocusable(false);
+			setDarkTheme();
+			
+			return;
+		}
 		
 		if (Body.currentTab.equals(SERIES_TAB))
 			searchFiles(SERIES_TAB, Home.seriesTitle, Home.coverPathArray);
