@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -20,10 +21,13 @@ public abstract class PathManager extends Home {
 
 		foldersPath.removeAll(foldersPath);
 		coverPathArray.removeAll(coverPathArray);
+		seriesTitle.removeAll(seriesTitle);
 		
 		getPathFolders();		
 		initPathToCovers();
+		
 		sortPathArray(coverPathArray);
+		Collections.sort(seriesTitle);
 	}
 		
 	public static void updatePathFolders(File path) {
@@ -35,6 +39,7 @@ public abstract class PathManager extends Home {
 		
 		initPathToCovers(path.toString());
 		sortPathArray(coverPathArray);
+		Collections.sort(seriesTitle);
 	}
 	
 	private static void saveFolderPath(File path) {
@@ -117,6 +122,7 @@ public abstract class PathManager extends Home {
 			extension = getImageExtension(file, path);
 			
 			coverPathArray.add(path + SEPARATOR + file + SEPARATOR + Body.COVER_FOLDER_NAME + SEPARATOR + file + "." + extension);		
+			seriesTitle.add(file);
 		}
 	}
 	
@@ -186,7 +192,6 @@ public abstract class PathManager extends Home {
 			myReader.close();
 			
 			FileWriter myWriter = new FileWriter(FILE_FOLDER_PATH);
-
 			for (String line : lines) myWriter.write(line + "\n");
 			
 			myWriter.close();
