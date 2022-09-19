@@ -15,8 +15,10 @@ import body.bibliotheque.Bibliotheque;
 import body.main.Body;
 import filter.FileSearch;
 import home.IGlobal;
+import menu.IMenu;
 import utils.UI.Button;
 import utils.UI.Image;
+import utils.UI.SearchBar;
 import utils.UI.Title;
 import utils.shape.Position;
 
@@ -33,6 +35,14 @@ public class Episode implements IGlobal, IEpisode {
 		Body.depth++;
 		this.episodeButtonArray = new ArrayList<Button>();
 	
+
+		SearchBar.isSearching = false;
+		
+		IMenu.searchBar.setText(IMenu.searchBar.defaultTxt);
+
+		IMenu.searchBar.setFocusable(false);
+		IMenu.searchBar.setDarkTheme();
+		
 		if (Body.depth == 1) {
 			Body.currentPath += folderName;
 			currentFolderPath = Body.currentPath;	
