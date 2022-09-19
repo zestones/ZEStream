@@ -61,11 +61,11 @@ public class BodyEvent implements IBody {
 				ArrayList<String> tmp = new ArrayList<String>();
 
 				if (!SearchBar.isSearching) {
-					if (Body.currentTab.equals(SERIES_TAB)) tmp = inverseArrayOrder(Home.coverPathArray);
-					else tmp = inverseArrayOrder(Bibliotheque.coverPathArray);					
+					if (Body.currentTab.equals(SERIES_TAB)) tmp = FileSearch.inverseArrayOrder(Home.coverPathArray);
+					else tmp = FileSearch.inverseArrayOrder(Bibliotheque.coverPathArray);					
 				}
 				else {
-					tmp = inverseArrayOrder(SearchBar.sortedCoverPathArray);
+					tmp = FileSearch.inverseArrayOrder(SearchBar.sortedCoverPathArray);
 					SearchBar.sortedCoverPathArray = tmp;
 				}
 
@@ -95,16 +95,7 @@ public class BodyEvent implements IBody {
 			}
 		});
 	}
-	
-	private ArrayList<String> inverseArrayOrder(ArrayList<String> list) {
-		ArrayList<String> tmp = new ArrayList<String>();
-
-		for (int i = list.size(); i != 0; i--)
-			tmp.add(list.get(i - 1));
 		
-		return tmp;
-	}
-	
 	private void delEvent(ArrayList<Button> delButtonArray) {
 		for(Button btn : delButtonArray) {
 			btn.addActionListener(new ActionListener() {

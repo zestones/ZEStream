@@ -71,10 +71,11 @@ public class Body implements IBody {
 			searchBar.setFocusable(false);
 			searchBar.setDarkTheme();
 			
-			if (sortButton.getText() == sortDescend) 
+			if (sortButton.getText() == sortDescend) {
 				sortButton.setText(sortAscend);
+			}
 		}
-		
+			
 		currentTab = onglet;
 		container.add(sortButton);
 		
@@ -92,6 +93,7 @@ public class Body implements IBody {
 	
 	public Body(String folderPath) {
 		depth++;
+		
 		if (depth == 1) parentPathName = folderPath;
 				
 		if (SearchBar.isSearching) {

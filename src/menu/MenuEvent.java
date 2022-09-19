@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import body.IBody;
 import body.bibliotheque.Bibliotheque;
 import body.main.Body;
 import home.Home;
@@ -40,6 +41,9 @@ public class MenuEvent implements IMenu {
 		
 		biblio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if(biblio.isButtonActive() && Body.depth == 0) return;
+				
 				container.removeAll();
 				container.revalidate();
 				sp.remove(container);
@@ -48,6 +52,10 @@ public class MenuEvent implements IMenu {
 				unsetActiveButton(biblio.getText());
 				
 				Bibliotheque.getBiblioInfosFolder();
+				
+				if (IBody.sortButton.getText() == IBody.sortDescend)
+					IBody.sortButton.setText(IBody.sortAscend);
+					
 				new Body(Bibliotheque.coverPathArray, LIBRARY_TAB);
 				
 				frame.repaint();

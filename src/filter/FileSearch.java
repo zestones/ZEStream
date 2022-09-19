@@ -41,6 +41,15 @@ public class FileSearch {
     	return parts[0];
     }
     
+    public static ArrayList<String> inverseArrayOrder(ArrayList<String> list) {
+		ArrayList<String> tmp = new ArrayList<String>();
+
+		for (int i = list.size(); i != 0; i--)
+			tmp.add(list.get(i - 1));
+		
+		return tmp;
+	}
+    
     public ArrayList<String> getFileInDepth() { return this.filesInDepth; }
     
     public void printFilesInDepth() {
