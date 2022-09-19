@@ -225,15 +225,15 @@ public class BodyEvent implements IBody {
 		clearBody();
 
 		FileSearch fs = new FileSearch(folderPath, 1);
-		if (fs.getFileInDepth().size() > 0) {
+		if (fs.getFileInDepth().size() > 1) {
 			String firstFile = fs.getFileInDepth().get(0);
 
-			if (firstFile.equalsIgnoreCase(Body.COVER_FOLDER_NAME))
-				firstFile = fs.getFileInDepth().get(1);
+			if (firstFile.equalsIgnoreCase(Body.COVER_FOLDER_NAME)) {
+				firstFile = fs.getFileInDepth().get(1);				
+			}
+			
 			File f = new File(folderPath + IGlobal.SEPARATOR + firstFile);
-
-			if (f.isDirectory())
-				new Body(folderPath);
+			if (f.isDirectory()) new Body(folderPath);
 			else {
 				Body.currentPath = folderPath;
 				new Episode(buttonArray.get(index).getImagePath(), new File(folderPath).getName(), "");
