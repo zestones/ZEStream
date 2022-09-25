@@ -35,7 +35,7 @@ public class Home implements IGlobal {
 		
 		new Menu();
 		new Body(coverPathArray, SERIES_TAB);
-
+		
 		frame.pack();
 		frame.setVisible(true);
 	}

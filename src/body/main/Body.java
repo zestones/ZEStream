@@ -86,8 +86,7 @@ public class Body implements IBody {
 		this.fillBody(coverPathArray);		
 		new BodyEvent(cardButtonArray, txtButtonArray, delButtonArray);
 
-		sp.updateScrollPanelStyle();
-
+		sp.updateScrollPanelStyle();	
 		frame.getContentPane().add(sp);
 	}
 	
@@ -427,6 +426,5 @@ public class Body implements IBody {
 		txt.setText(splittedName + "...");
 		
 		return txt;
-	}
-	
+	}	
 }
