@@ -27,4 +27,5 @@ public interface IBody extends IMenu {
 	Color DEFAULT_CARD_COLOR = new Color(215, 215, 215);
 	
 	String BOOKMARK_ICON = "./res/bookmark.png";
+	String NO_RESULT_ICON = "./res/no-resultat-found.png";
 }

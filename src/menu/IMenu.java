@@ -28,7 +28,7 @@ public interface IMenu extends IGlobal {
 	
 	// the Search bar
 	SearchBar searchBar = new SearchBar("Rechercher", FRAME_WIDTH - 280, 25, 200, 30);
-	Button reset = new Button(new Position(375, 150), "Cliquer pour annuler la recherche", 14, Color.white, DARK_THEME, Font.BOLD);
+	Button reset = new Button(new Position(375, 150), "X Cliquer pour annuler la recherche", 14, new Color(227, 15, 15), DARK_THEME, Font.BOLD);
 
 	String SEARCH_ICON = "./res/search.png";
 }

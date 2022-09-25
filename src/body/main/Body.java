@@ -82,7 +82,10 @@ public class Body implements IBody {
 		cardButtonArray = new ArrayList<Button>();
 		txtButtonArray = new ArrayList<Button>();
 		delButtonArray = new ArrayList<Button>();
-
+		
+		if (coverPathArray.isEmpty()) 
+			container.add(new Image(new Position(340, 185), NO_RESULT_ICON, new Dimension(400, 300)));
+		
 		this.fillBody(coverPathArray);		
 		new BodyEvent(cardButtonArray, txtButtonArray, delButtonArray);
 
