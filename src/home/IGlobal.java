@@ -22,11 +22,12 @@ public interface IGlobal {
 
 	// Color of the main Theme
 	Color DARK_THEME = new Color(36, 36, 36);
-	
+
 	// Panel of the main body of the frame
 	JPanel container = new JPanel();
 	// The scrollable panel
-	ScrollPanel sp =  new ScrollPanel(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	ScrollPanel sp = new ScrollPanel(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+			ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 	// Properties of a card object
 	int PADDING_CARDS_SIDE = 65;
@@ -34,10 +35,11 @@ public interface IGlobal {
 	int CARD_WIDTH = 175;
 	int CARD_HEIGHT = 225;
 	Dimension DIM_CARD = new Dimension(CARD_WIDTH, CARD_HEIGHT);
-	
+
 	String IMG_NOT_FOUND = "./res/img-not-found.jpg";
 	String DELETE_ICON = "./res/delete.png";
 
 	String SERIES_TAB = "Séries";
 	String LIBRARY_TAB = "Biblio";
+	String EPISODE_TAB = "Episode";
 }
