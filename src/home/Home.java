@@ -15,7 +15,7 @@ public class Home implements IGlobal {
 	public static ArrayList<String> coverPathArray = new ArrayList<String>();
 
 	public static ArrayList<String> seriesTitle = new ArrayList<String>();
-	
+
 	public Home() {
 
 		frame.setPreferredSize(DIM_FRAME);
@@ -29,17 +29,17 @@ public class Home implements IGlobal {
 		PathManager.getPathFolders();
 		PathManager.initPathToCovers();
 		PathManager.sortPathArray(coverPathArray);
-		
+
 		Collections.sort(seriesTitle);
 		Bibliotheque.getBiblioInfosFolder();
-		
+
 		new Menu();
 		new Body(coverPathArray, SERIES_TAB);
-		
+
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
+
 	public static void clearArrays() {
 		foldersPath.clear();
 		coverPathArray.clear();
