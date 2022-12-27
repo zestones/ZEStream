@@ -62,7 +62,6 @@ public abstract class Bibliotheque {
 			myWriter.write("");
 			myWriter.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -35,7 +35,7 @@ public class Button extends JButton implements MouseMotionListener, IGlobal {
 	private String imgPath;
 	private Color background;
 	private Color foreground;
-	private boolean hoverActive;
+	public boolean hoverActive;
 	private boolean blur;
 
 	private Color iconColor;

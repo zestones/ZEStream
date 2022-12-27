@@ -3,9 +3,7 @@ package body.episode;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -118,26 +116,22 @@ public class Episode implements IGlobal, IEpisode {
 		infos.add(new Title(season, new Position(h1.getX() + 150, h1.getHeight() + h1.getY() + 135), 14, Color.white,
 				Font.PLAIN));
 
-		if (Bibliotheque.seriesTitle.contains(title)) {
-			Button gotoBookmarked = new Button(
+		Boolean canGoto = Bibliotheque.seriesPath.contains(currentFolderPath);
+		Button gotoBookmarked = null;
+		if (canGoto) {
+			gotoBookmarked = new Button(
 					new Position(
 							h1.getX() + 150 + 17 + (FRAME_WIDTH - (h1.getX() + 150) - 300) / 2,
 							(275 - 50) / 2),
 					"BOOKMARK", 16,
 					new Dimension(300, 50),
 					Color.white,
-					new Color(40, 80, 160, 45),
+					new Color(20, 66, 120),
 					Font.BOLD);
 
 			gotoBookmarked.setBorderPainted(true);
 			gotoBookmarked.setBorder(new MatteBorder(1, 0, 1, 0, Color.white));
 			infos.add(gotoBookmarked);
-
-			gotoBookmarked.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					sp.getViewport().setViewPosition(new Point(0, Episode.BOOKMARKED_POSITION));
-				}
-			});
 		}
 
 		container.add(infos);
@@ -149,6 +143,9 @@ public class Episode implements IGlobal, IEpisode {
 		frame.getContentPane().add(sp);
 		EpisodeEvent ee = new EpisodeEvent(episodeButtonArray);
 		ee.unsetHoverAllButton("");
+
+		if (canGoto)
+			ee.gotoBtnEvent(gotoBookmarked);
 	}
 
 	private void fillBody(FileSearch fs) {

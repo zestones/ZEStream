@@ -3,6 +3,7 @@ package home;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import body.bibliotheque.Bibliotheque;
@@ -24,6 +25,7 @@ public class Home implements IGlobal {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(100, 100);
 
+		frame.setIconImage(new ImageIcon(APP_ICON).getImage());
 		frame.setUndecorated(false);
 
 		PathManager.getPathFolders();

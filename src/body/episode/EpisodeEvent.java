@@ -1,7 +1,9 @@
 package body.episode;
 
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
+import javax.swing.border.MatteBorder;
 
 import body.bibliotheque.Bibliotheque;
 import body.main.Body;
@@ -179,6 +182,7 @@ public class EpisodeEvent implements IMenu, IEpisode {
 		}
 
 		container.addMouseMotionListener(new MouseAdapter() {
+
 			public void mouseMoved(MouseEvent e) {
 				unsetHoverAllButton("");
 				removeBookmarkButton();
@@ -215,5 +219,37 @@ public class EpisodeEvent implements IMenu, IEpisode {
 						btn.unsetHoverButton();
 				}
 			}
+	}
+
+	public void gotoBtnEvent(Button gotoBookmarked) {
+		gotoBookmarked.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sp.getViewport().setViewPosition(new Point(0, Episode.BOOKMARKED_POSITION));
+			}
+		});
+
+		gotoBookmarked.addMouseMotionListener(new MouseAdapter() {
+			public void mouseMoved(MouseEvent e) {
+				if (!gotoBookmarked.isHoverActive()) {
+					gotoBookmarked.hoverActive = true;
+					gotoBookmarked.setBackground(new Color(20, 66, 160));
+					gotoBookmarked.setForeground(Color.white);
+					container.repaint();
+				}
+			}
+		});
+
+		container.addMouseMotionListener(new MouseAdapter() {
+			public void mouseMoved(MouseEvent e) {
+				if (gotoBookmarked.isHoverActive()) {
+					gotoBookmarked.hoverActive = false;
+					gotoBookmarked.setBackground(new Color(20, 66, 120));
+					gotoBookmarked.setForeground(Color.white);
+					gotoBookmarked.setBorderPainted(true);
+					gotoBookmarked.setBorder(new MatteBorder(1, 0, 1, 0, Color.white));
+					container.repaint();
+				}
+			}
+		});
 	}
 }

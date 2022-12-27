@@ -42,4 +42,7 @@ public interface IGlobal {
 	String SERIES_TAB = "Séries";
 	String LIBRARY_TAB = "Biblio";
 	String EPISODE_TAB = "Episode";
+
+	// APP Icone
+	String APP_ICON = "./res/Icon.png";
 }
