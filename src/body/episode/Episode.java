@@ -36,7 +36,6 @@ public class Episode implements IGlobal, IEpisode {
 
 		Body.depth++;
 		this.episodeButtonArray = new ArrayList<Button>();
-		Body.currentTab = EPISODE_TAB;
 
 		SearchBar.isSearching = false;
 

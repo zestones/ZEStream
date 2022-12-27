@@ -39,16 +39,18 @@ public class BodyEvent implements IBody {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clearBody();
-				
+
 				if (Body.depth == 1)
-					if (Body.currentTab.equals(SERIES_TAB))
+					if (Body.currentTab.equals(SERIES_TAB)) {
+						System.out.println("!!!!");
 						new Body(Home.coverPathArray, Body.currentTab);
-					else
+					} else {
+						System.out.println("---");
 						new Body(Bibliotheque.coverPathArray, Body.currentTab);
+					}
 				else {
 					int sepPos = Body.currentPath.lastIndexOf(IGlobal.SEPARATOR);
 					String folderPath = Body.currentPath.substring(0, sepPos);
-
 					new Body(folderPath);
 					Body.depth -= 2;
 				}
@@ -108,11 +110,10 @@ public class BodyEvent implements IBody {
 
 							PopUp confirm = new PopUp(
 									"Etes-vous sûres de vouloir supprimer cette série ?",
-									"Selectioner une option", 
+									"Selectioner une option",
 									JOptionPane.YES_NO_CANCEL_OPTION,
-									JOptionPane.WARNING_MESSAGE
-									);
-							
+									JOptionPane.WARNING_MESSAGE);
+
 							if (confirm.getAnswer() == JOptionPane.YES_OPTION) {
 								clearBody();
 
@@ -186,11 +187,12 @@ public class BodyEvent implements IBody {
 							if (Body.depth == 0) {
 								initBodyFirstDepth(cardButtonArray, j);
 								break;
-							} 
-							else folderPath = Body.currentPath + IGlobal.SEPARATOR + cardButtonArray.get(j).getName();
+							} else
+								folderPath = Body.currentPath + IGlobal.SEPARATOR + cardButtonArray.get(j).getName();
 
 							clearBody();
-							if (Body.depth >= 1) initBodyDepth(cardButtonArray, j, folderPath);
+							if (Body.depth >= 1)
+								initBodyDepth(cardButtonArray, j, folderPath);
 
 							frame.repaint();
 							break;
@@ -208,10 +210,12 @@ public class BodyEvent implements IBody {
 
 			File f = new File(folderPath + IGlobal.SEPARATOR + fs.getFileInDepth().get(0));
 
-			if (f.isDirectory()) new Body(folderPath);
-			else new Episode(buttonArray.get(index).getImagePath(), Body.previousPage, buttonArray.get(index).getName());
-		} 
-		else new Episode(buttonArray.get(index).getImagePath(), Body.previousPage, buttonArray.get(index).getName());
+			if (f.isDirectory())
+				new Body(folderPath);
+			else
+				new Episode(buttonArray.get(index).getImagePath(), Body.previousPage, buttonArray.get(index).getName());
+		} else
+			new Episode(buttonArray.get(index).getImagePath(), Body.previousPage, buttonArray.get(index).getName());
 	}
 
 	private void initBodyFirstDepth(ArrayList<Button> buttonArray, int index) {
@@ -229,11 +233,12 @@ public class BodyEvent implements IBody {
 			String firstFile = fs.getFileInDepth().get(0);
 
 			if (firstFile.equalsIgnoreCase(Body.COVER_FOLDER_NAME)) {
-				firstFile = fs.getFileInDepth().get(1);				
+				firstFile = fs.getFileInDepth().get(1);
 			}
-			
+
 			File f = new File(folderPath + IGlobal.SEPARATOR + firstFile);
-			if (f.isDirectory()) new Body(folderPath);
+			if (f.isDirectory())
+				new Body(folderPath);
 			else {
 				Body.currentPath = folderPath;
 				new Episode(buttonArray.get(index).getImagePath(), new File(folderPath).getName(), "");
